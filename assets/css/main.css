@@ -2634,6 +2634,15 @@ input, select, textarea {
 		position: relative;
 	}
 
+	.image-center {
+		border: 0;
+		border-radius: 4px;
+		display: block;
+		position: relative;
+		margin-left: auto;
+		margin-right: auto;		
+	}
+
 		.image img {
 			display: block;
 			border-radius: 4px;
