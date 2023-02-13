@@ -2131,7 +2131,7 @@ input, select, textarea {
 	input[type="submit"],
 	input[type="reset"],
 	input[type="button"],
-	button,
+	button :not(#calc),
 	.button {
 		-moz-appearance: none;
 		-webkit-appearance: none;
