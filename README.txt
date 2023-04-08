@@ -1,6 +1,6 @@
-# Bush Turkey Classic static website
+# Bush Turkey Track Club static website
 
-A static web site for a multi-round foot race series.
+A static web site for the Bush Turkey Track Club based in Brisbane Australia.
 
 HTML template: Story by HTML5 UP
 html5up.net | @ajlkn
