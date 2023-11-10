@@ -212,7 +212,9 @@
 		<script>
 			// DataTables
 			$(document).ready( function () {
-				$('#individualResults').DataTable();
+				$('#individualResults').DataTable({
+					paging: false,
+				});
 			} );
 		</script>
 	</body>
