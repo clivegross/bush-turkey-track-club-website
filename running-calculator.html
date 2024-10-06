@@ -698,11 +698,18 @@
               <label for="speedChartRadio">Speed (m/s)</label>
             </div>
             <div id="speedChartContainer">
-              <canvas id="speedDurationChart" width="400" height="200"></canvas>
+              <canvas id="speedDurationChart"></canvas>
             </div>
             <div id="paceChartContainer" style="display: none">
-              <canvas id="paceDurationChart"></canvas>
+              <canvas id="paceDurationChart" height="300"></canvas>
             </div>
+            <!-- Inserting styles directly into the body for testing -->
+            <!-- <style>
+              #paceDurationChart,
+              #speedDurationChart {
+                height: 400;
+              }
+            </style> -->
           </div>
         </div>
       </section>
