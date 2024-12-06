@@ -90,7 +90,7 @@
           <div class="image">
             <a href="store.html">
               <img
-                src="images/bush-turkey-relay-2024/bush-turkey-relay-2024-poster-square.png"
+                src="images/bush-turkey-relay-2024/Bush-Turkey-Relay-2024-Poster-1920x1005.png"
                 alt="Events Bush Turkey Relay 2024"
                 style="max-height: 100vh; max-width: 100vw"
               />
@@ -117,7 +117,7 @@
                   >DEAGON SPEEDWAY</a
                 >
               </li>
-              <li><a href="store.html" class="button">REGISTER</a></li>
+              <li><a href="#results" class="button primary icon solid fa-trophy" >RESULTS</a></li>
             </ul>
           </header>
           <p>
@@ -141,28 +141,76 @@
             to help us plan adequate catering. All welcome.
           </p>
           <h2>Teams</h2>
-          <p>
-            Teams will be announced soon,
-            <a
-              href="https://www.instagram.com/bush_turkey_track_club/"
-              target="_blank"
-              >follow us on Instagram</a
-            >
-            for announcements.
-          </p>
+          <div class="inner small">
+            <div class="image">
+              <a href="events.html"
+                ><img
+                  src="images/bush-turkey-relay-2024/bush-turkey-relay-2024-teams-square.jpg"
+                  alt="Events Bush Turkey Relay 2024"
+                  style="max-width: 50vw;"
+              /></a>
+            </div>
+          </div>
 
           <ul class="actions stacked">
-            <li><a href="store.html" class="button">REGISTER</a></li>
+            <li><a href="#results" class="button primary icon solid fa-trophy" >RESULTS</a></li>
           </ul>
-        </div>
-        <div class="image fit">
-          <img
-            src="images/on-running-squadrace-relay-stephen-butcher-2023.jpg"
-            alt="Events On Running Squadrace Relay 2023"
-          />
         </div>
       </section>
 
+        	<!-- Results -->
+			<section class="wrapper style1 align-center" id="results">
+				<div class="inner">
+					<h2>Results</h2>
+					<p>Results will be posted here at the conclusion of the event.</p>
+
+          <h3>Team Results</h3>
+          <table id="results" class="leaderboard display nowrap" style="width:100%">
+            <thead>
+              <tr><th>Position</th><th>Team</th><th>Time</th></tr>
+            </thead>
+            <tbody>
+              
+              <!-- PASTE RESULT HTML IN HERE: -->
+
+  <tr><td>4</td><td style="background-color: yellow;">Yellow Team</td><td>00:00</td></tr>
+  <tr><td>4</td><td style="background-color: black; color: white;">Black Team</td><td>00:00</td></tr>
+  <tr><td>4</td><td style="background-color: red; color: white;">Red Team</td><td>00:00</td></tr>
+  <tr><td>4</td><td style="background-color: white;">White Team</td><td>00:00</td></tr>
+
+
+              <!-- PASTE RESULTS ABOVE -->
+</tbody>
+</table>
+
+<br>
+<br>
+
+<h3 id="individual-results">Individual Results</h3>
+
+<table id="individualResults" class="results display nowrap" style="width:100%">
+<thead>
+<tr><th>Rank</th><th>Name</th><th>Team</th><th>Starting Order</th><th>Time</th></tr>
+</thead>
+
+<!-- PASTE RESULT HTML IN HERE: -->
+
+<tr><td>1</td><td>Liam McCarthy</td><td>Yellow Team</td><td>00:00</td></tr>
+<tr><td>1</td><td>Aidan Dineen</td><td>Black Team</td><td>00:00</td></tr>
+
+<!-- PASTE RESULTS HTML ABOVE ^^^ -->
+
+</tbody>
+</table>
+
+<br>
+<br>
+
+
+				</div>
+			</section>
+
+    
       <!-- previous -->
       <section class="wrapper style1 align-center">
         <div class="inner">
@@ -289,6 +337,12 @@
                 alt="Round Two"
             /></a>
           </div>
+          <div class="image fit">
+            <img
+              src="images/on-running-squadrace-relay-stephen-butcher-2023.jpg"
+              alt="Events On Running Squadrace Relay 2023"
+            />
+          </div>
         </div>
       </section>
 
@@ -363,22 +417,17 @@
       // 	  scrollX: true,
       //     });
       //   });
-      new DataTable("table.leaderboard", {
+      new DataTable("table.results", {
         paging: false,
         scrollX: true,
       });
 
-      new DataTable("table.results", {
-        pageLength: 30,
+      new DataTable("table.individualResults", {
+        pageLength: 32,
         lengthChange: false,
         scrollX: true,
       });
 
-      new DataTable("table.resultsPl36", {
-        pageLength: 36,
-        lengthChange: false,
-        scrollX: true,
-      });
     </script>
   </body>
 </html>
