@@ -2730,6 +2730,19 @@ input, select, textarea {
 				width: 100%;
 			}
 
+			.image-row {
+				display: flex;
+				justify-content: space-between;
+			  }
+			  .image-row .image {
+				flex: 1;
+				margin: 0 5px;
+			  }
+			  .image-row .image img {
+				width: 100%;
+				height: auto;
+			  }
+
 /* List */
 
 	ol {
