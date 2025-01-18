@@ -127,7 +127,6 @@
             >
           </p>
           <ul class="actions stacked">
-            <li><a href="store.html" class="button primary">REGISTER</a></li>
             <li>
               <a href="#results" class="button primary icon solid fa-trophy"
                 >RESULTS</a
@@ -166,7 +165,9 @@
           </p>
           <ul class="actions stacked">
             <li>
-              <a href="#results" class="button primary icon solid fa-trophy"
+              <a
+                href="#round-one-results"
+                class="button primary icon solid fa-trophy"
                 >RESULTS</a
               >
             </li>
@@ -194,7 +195,7 @@
       <section class="wrapper style1 align-center" id="round-two">
         <div class="inner">
           <h2>Round Two: Brisbane Entertainment Centre Mile</h2>
-          <p class="major">SATURDAY 11 JANUARY 2025 6:00 AM</p>
+          <p class="major">SATURDAY 11 JANUARY 2025 6:15 AM</p>
           <div class="image-center">
             <img
               src="images/bush-turkey-classic-2024-25/bush-turkey-classic-round-2-2024-25-x270.png"
@@ -210,7 +211,13 @@
             for the warm up.
           </p>
           <ul class="actions stacked">
-            <li><a href="store.html" class="button primary">REGISTER</a></li>
+            <li>
+              <a
+                href="#round-two-results"
+                class="button primary icon solid fa-trophy"
+                >RESULTS</a
+              >
+            </li>
             <li>
               <a
                 href="https://www.strava.com/routes/3287017171650857622"
@@ -235,7 +242,7 @@
       <section class="wrapper style1 align-center" id="round-three">
         <div class="inner">
           <h2>Round Three: Deagon Speedway</h2>
-          <p class="major">SATURDAY 18 JANUARY 2025 *5:45* AM</p>
+          <p class="major">SATURDAY 18 JANUARY 2025 5:45 AM</p>
           <div class="image-center">
             <img
               src="images/bush-turkey-classic-2024-25/bush-turkey-classic-round-3-2024-25-x270.png"
@@ -252,7 +259,13 @@
             for the warm up.
           </p>
           <ul class="actions stacked">
-            <li><a href="store.html" class="button primary">REGISTER</a></li>
+            <li>
+              <a
+                href="#round-three-results"
+                class="button primary icon solid fa-trophy"
+                >RESULTS</a
+              >
+            </li>
             <li>
               <a
                 href="https://www.strava.com/segments/26368423"
@@ -293,10 +306,10 @@
       <section class="wrapper style1 align-center" id="results">
         <div class="inner">
           <h2>Results</h2>
-          <p>Results will be posted here at the conclusion of the event.</p>
 
-          <h3>Overall</h3>
-          <h3>Female Series Leaderboard</h3>
+          <!-- RESULTS GO BELOW vvv -->
+
+          <h3 id="results-female-overall">Female Series Overall</h3>
           <table
             id="femaleLeaderboard"
             class="leaderboard display nowrap"
@@ -320,60 +333,70 @@
                 <td>Lisa Dineen</td>
                 <td>F 30-39</td>
                 <td>1</td>
-                <td>2</td>
+                <td>3</td>
                 <td>1</td>
                 <td>1</td>
-                <td>-</td>
+                <td>1</td>
               </tr>
               <tr>
                 <td>2</td>
                 <td>Maree Morris</td>
                 <td>F 30-39</td>
                 <td>2</td>
-                <td>4</td>
+                <td>7</td>
                 <td>2</td>
                 <td>2</td>
-                <td>-</td>
+                <td>3</td>
               </tr>
               <tr>
                 <td>3</td>
                 <td>Tamika Hassum</td>
                 <td>F 20-29</td>
                 <td>1</td>
-                <td>7</td>
+                <td>9</td>
                 <td>4</td>
                 <td>3</td>
-                <td>-</td>
+                <td>2</td>
               </tr>
               <tr>
                 <td>4</td>
                 <td>Marina Geffrelot</td>
                 <td>F >40</td>
                 <td>1</td>
-                <td>8</td>
+                <td>14</td>
                 <td>3</td>
                 <td>5</td>
-                <td>-</td>
+                <td>6</td>
               </tr>
               <tr>
                 <td>5</td>
-                <td>Jess Mikitis</td>
-                <td>F 20-29</td>
-                <td>2</td>
-                <td>10</td>
+                <td>Amity Gross</td>
+                <td>F U20</td>
+                <td>1</td>
+                <td>15</td>
                 <td>6</td>
+                <td>5</td>
                 <td>4</td>
-                <td>-</td>
               </tr>
               <tr>
                 <td>5</td>
                 <td>Rikki Gross</td>
                 <td>F 30-39</td>
                 <td>3</td>
-                <td>10</td>
+                <td>15</td>
                 <td>5</td>
                 <td>5</td>
-                <td>-</td>
+                <td>5</td>
+              </tr>
+              <tr>
+                <td>7</td>
+                <td>Jess Mikitis</td>
+                <td>F 20-29</td>
+                <td>2</td>
+                <td>16</td>
+                <td>6</td>
+                <td>4</td>
+                <td>6</td>
               </tr>
             </tbody>
           </table>
@@ -381,7 +404,7 @@
           <br />
           <br />
 
-          <h3>Male Series Leaderboard</h3>
+          <h3 id="results-male-overall">Male Series Overall</h3>
           <table
             id="maleLeaderboard"
             class="leaderboard display nowrap"
@@ -405,310 +428,360 @@
                 <td>Taz Savage</td>
                 <td>M 30-39</td>
                 <td>1</td>
-                <td>4</td>
+                <td>6</td>
                 <td>2</td>
                 <td>2</td>
-                <td>-</td>
+                <td>2</td>
               </tr>
               <tr>
                 <td>2</td>
                 <td>Jon Hansen</td>
                 <td>M >40</td>
                 <td>1</td>
-                <td>6</td>
+                <td>9</td>
                 <td>3</td>
                 <td>3</td>
-                <td>-</td>
+                <td>3</td>
               </tr>
               <tr>
                 <td>3</td>
                 <td>Oscar Merlin</td>
                 <td>M U20</td>
                 <td>1</td>
-                <td>9</td>
+                <td>16</td>
                 <td>5</td>
                 <td>4</td>
-                <td>-</td>
+                <td>7</td>
               </tr>
               <tr>
                 <td>4</td>
                 <td>Dan Storey</td>
                 <td>M >40</td>
                 <td>2</td>
-                <td>12</td>
+                <td>18</td>
                 <td>6</td>
                 <td>6</td>
-                <td>-</td>
+                <td>6</td>
               </tr>
               <tr>
                 <td>5</td>
-                <td>Michael McGowan</td>
-                <td>M 30-39</td>
-                <td>2</td>
-                <td>16</td>
-                <td>9</td>
-                <td>7</td>
-                <td>-</td>
-              </tr>
-              <tr>
-                <td>6</td>
-                <td>Jassi Grewal</td>
-                <td>M 30-39</td>
-                <td>3</td>
-                <td>19</td>
-                <td>11</td>
-                <td>8</td>
-                <td>-</td>
-              </tr>
-              <tr>
-                <td>7</td>
-                <td>Reuben Casey</td>
-                <td>M U20</td>
-                <td>2</td>
-                <td>21</td>
-                <td>8</td>
-                <td>13</td>
-                <td>-</td>
-              </tr>
-              <tr>
-                <td>8</td>
-                <td>Ewan McFadzen</td>
-                <td>M U20</td>
-                <td>3</td>
-                <td>22</td>
-                <td>1</td>
-                <td>21</td>
-                <td>-</td>
-              </tr>
-              <tr>
-                <td>9</td>
                 <td>Michael Cnops</td>
                 <td>M 30-39</td>
-                <td>4</td>
-                <td>24</td>
+                <td>2</td>
+                <td>25</td>
                 <td>23</td>
                 <td>1</td>
-                <td>-</td>
+                <td>1</td>
               </tr>
               <tr>
-                <td>9</td>
-                <td>William Lacy</td>
-                <td>M 30-39</td>
-                <td>4</td>
-                <td>24</td>
-                <td>12</td>
-                <td>12</td>
-                <td>-</td>
-              </tr>
-              <tr>
-                <td>11</td>
-                <td>Camden Casey</td>
-                <td>M 30-39</td>
                 <td>6</td>
-                <td>25</td>
-                <td>16</td>
+                <td>Michael McGowan</td>
+                <td>M 30-39</td>
+                <td>3</td>
+                <td>26</td>
                 <td>9</td>
-                <td>-</td>
+                <td>7</td>
+                <td>10</td>
               </tr>
               <tr>
-                <td>11</td>
+                <td>7</td>
                 <td>Liam McCarthy</td>
                 <td>M 20-29</td>
                 <td>1</td>
-                <td>25</td>
+                <td>30</td>
                 <td>4</td>
                 <td>21</td>
-                <td>-</td>
+                <td>5</td>
               </tr>
               <tr>
-                <td>13</td>
-                <td>Thomas Merlin</td>
-                <td>M U20</td>
-                <td>4</td>
-                <td>26</td>
-                <td>10</td>
-                <td>16</td>
-                <td>-</td>
-              </tr>
-              <tr>
-                <td>14</td>
-                <td>Sascha Hilgers</td>
+                <td>8</td>
+                <td>Jassi Grewal</td>
                 <td>M 30-39</td>
-                <td>7</td>
-                <td>27</td>
-                <td>13</td>
-                <td>14</td>
-                <td>-</td>
+                <td>4</td>
+                <td>31</td>
+                <td>11</td>
+                <td>8</td>
+                <td>12</td>
               </tr>
               <tr>
-                <td>15</td>
+                <td>9</td>
+                <td>Reuben Casey</td>
+                <td>M U20</td>
+                <td>2</td>
+                <td>32</td>
+                <td>8</td>
+                <td>13</td>
+                <td>11</td>
+              </tr>
+              <tr>
+                <td>10</td>
                 <td>Ben Merlin</td>
                 <td>M >40</td>
                 <td>3</td>
-                <td>28</td>
+                <td>36</td>
                 <td>23</td>
                 <td>5</td>
-                <td>-</td>
+                <td>8</td>
               </tr>
               <tr>
-                <td>15</td>
-                <td>Mat Scott</td>
-                <td>M >40</td>
-                <td>3</td>
-                <td>28</td>
-                <td>17</td>
                 <td>11</td>
-                <td>-</td>
-              </tr>
-              <tr>
-                <td>15</td>
-                <td>Shane Price</td>
-                <td>M >40</td>
+                <td>Thomas Merlin</td>
+                <td>M U20</td>
                 <td>3</td>
-                <td>28</td>
-                <td>7</td>
-                <td>21</td>
-                <td>-</td>
+                <td>39</td>
+                <td>10</td>
+                <td>16</td>
+                <td>13</td>
               </tr>
               <tr>
-                <td>18</td>
+                <td>12</td>
+                <td>Camden Casey</td>
+                <td>M 30-39</td>
+                <td>5</td>
+                <td>42</td>
+                <td>16</td>
+                <td>9</td>
+                <td>17</td>
+              </tr>
+              <tr>
+                <td>13</td>
                 <td>Mitchell Collins</td>
                 <td>M 20-29</td>
                 <td>2</td>
-                <td>32</td>
+                <td>46</td>
                 <td>14</td>
                 <td>18</td>
-                <td>-</td>
+                <td>14</td>
               </tr>
               <tr>
-                <td>19</td>
-                <td>Charlie Coster</td>
+                <td>14</td>
+                <td>Damien Clark</td>
                 <td>M 20-29</td>
                 <td>3</td>
-                <td>33</td>
+                <td>48</td>
+                <td>23</td>
+                <td>21</td>
+                <td>4</td>
+              </tr>
+              <tr>
+                <td>14</td>
+                <td>Ewan McFadzen</td>
+                <td>M U20</td>
+                <td>4</td>
+                <td>48</td>
+                <td>1</td>
+                <td>21</td>
+                <td>26</td>
+              </tr>
+              <tr>
+                <td>16</td>
+                <td>William Lacy</td>
+                <td>M 30-39</td>
+                <td>6</td>
+                <td>50</td>
+                <td>12</td>
+                <td>12</td>
+                <td>26</td>
+              </tr>
+              <tr>
+                <td>17</td>
+                <td>Rian Crowther</td>
+                <td>M 30-39</td>
+                <td>7</td>
+                <td>53</td>
+                <td>23</td>
+                <td>21</td>
+                <td>9</td>
+              </tr>
+              <tr>
+                <td>17</td>
+                <td>Charlie Coster</td>
+                <td>M 20-29</td>
+                <td>4</td>
+                <td>53</td>
                 <td>23</td>
                 <td>10</td>
-                <td>-</td>
+                <td>20</td>
+              </tr>
+              <tr>
+                <td>17</td>
+                <td>Sascha Hilgers</td>
+                <td>M 30-39</td>
+                <td>7</td>
+                <td>53</td>
+                <td>13</td>
+                <td>14</td>
+                <td>26</td>
               </tr>
               <tr>
                 <td>20</td>
                 <td>Mark Hilmer</td>
                 <td>M >40</td>
-                <td>6</td>
-                <td>35</td>
+                <td>4</td>
+                <td>54</td>
                 <td>18</td>
                 <td>17</td>
-                <td>-</td>
-              </tr>
-              <tr>
-                <td>21</td>
-                <td>Carl Batty</td>
-                <td>M >40</td>
-                <td>7</td>
-                <td>36</td>
-                <td>15</td>
-                <td>21</td>
-                <td>-</td>
-              </tr>
-              <tr>
-                <td>22</td>
-                <td>Rob Singleton</td>
-                <td>M 30-39</td>
-                <td>8</td>
-                <td>38</td>
-                <td>23</td>
-                <td>15</td>
-                <td>-</td>
-              </tr>
-              <tr>
-                <td>23</td>
-                <td>Paul Dodd</td>
-                <td>M >40</td>
-                <td>8</td>
-                <td>40</td>
                 <td>19</td>
+              </tr>
+              <tr>
+                <td>20</td>
+                <td>Shane Price</td>
+                <td>M >40</td>
+                <td>4</td>
+                <td>54</td>
+                <td>7</td>
                 <td>21</td>
-                <td>-</td>
+                <td>26</td>
+              </tr>
+              <tr>
+                <td>20</td>
+                <td>Mat Scott</td>
+                <td>M >40</td>
+                <td>4</td>
+                <td>54</td>
+                <td>17</td>
+                <td>11</td>
+                <td>26</td>
+              </tr>
+              <tr>
+                <td>23</td>
+                <td>Andrew Parr</td>
+                <td>M 30-39</td>
+                <td>9</td>
+                <td>58</td>
+                <td>23</td>
+                <td>19</td>
+                <td>16</td>
+              </tr>
+              <tr>
+                <td>24</td>
+                <td>Ruben Ripper</td>
+                <td>M U20</td>
+                <td>5</td>
+                <td>59</td>
+                <td>23</td>
+                <td>21</td>
+                <td>15</td>
               </tr>
               <tr>
                 <td>24</td>
                 <td>Joshua Merlin</td>
                 <td>M U20</td>
                 <td>5</td>
-                <td>41</td>
+                <td>59</td>
                 <td>21</td>
                 <td>20</td>
-                <td>-</td>
-              </tr>
-              <tr>
-                <td>24</td>
-                <td>Benjamin Wells</td>
-                <td>M 30-39</td>
-                <td>9</td>
-                <td>41</td>
-                <td>20</td>
-                <td>21</td>
-                <td>-</td>
+                <td>18</td>
               </tr>
               <tr>
                 <td>26</td>
-                <td>Andrew Parr</td>
-                <td>M 30-39</td>
-                <td>10</td>
-                <td>42</td>
-                <td>23</td>
-                <td>19</td>
-                <td>-</td>
+                <td>Carl Batty</td>
+                <td>M >40</td>
+                <td>7</td>
+                <td>62</td>
+                <td>15</td>
+                <td>21</td>
+                <td>26</td>
               </tr>
               <tr>
                 <td>27</td>
-                <td>Hector Gross</td>
-                <td>M U20</td>
-                <td>6</td>
-                <td>43</td>
-                <td>22</td>
-                <td>21</td>
-                <td>-</td>
+                <td>Rob Singleton</td>
+                <td>M 30-39</td>
+                <td>10</td>
+                <td>64</td>
+                <td>23</td>
+                <td>15</td>
+                <td>26</td>
               </tr>
               <tr>
                 <td>28</td>
-                <td>Damien Clark</td>
-                <td>M 20-29</td>
-                <td>4</td>
-                <td>44</td>
+                <td>Liam Dineen</td>
+                <td>M U20</td>
+                <td>7</td>
+                <td>65</td>
                 <td>23</td>
                 <td>21</td>
-                <td>-</td>
+                <td>21</td>
               </tr>
               <tr>
                 <td>28</td>
+                <td>Hector Gross</td>
+                <td>M U20</td>
+                <td>7</td>
+                <td>65</td>
+                <td>22</td>
+                <td>21</td>
+                <td>22</td>
+              </tr>
+              <tr>
+                <td>30</td>
+                <td>Paul Dodd</td>
+                <td>M >40</td>
+                <td>8</td>
+                <td>66</td>
+                <td>19</td>
+                <td>21</td>
+                <td>26</td>
+              </tr>
+              <tr>
+                <td>31</td>
+                <td>Lincoln Dineen</td>
+                <td>M U20</td>
+                <td>9</td>
+                <td>67</td>
+                <td>23</td>
+                <td>21</td>
+                <td>23</td>
+              </tr>
+              <tr>
+                <td>31</td>
+                <td>Benjamin Wells</td>
+                <td>M 30-39</td>
+                <td>11</td>
+                <td>67</td>
+                <td>20</td>
+                <td>21</td>
+                <td>26</td>
+              </tr>
+              <tr>
+                <td>33</td>
+                <td>Ryan Dineen</td>
+                <td>M U20</td>
+                <td>10</td>
+                <td>68</td>
+                <td>23</td>
+                <td>21</td>
+                <td>24</td>
+              </tr>
+              <tr>
+                <td>34</td>
+                <td>Aidan Dineen</td>
+                <td>M 30-39</td>
+                <td>12</td>
+                <td>69</td>
+                <td>23</td>
+                <td>21</td>
+                <td>25</td>
+              </tr>
+              <tr>
+                <td>35</td>
                 <td>Jim Hutchison</td>
                 <td>M >40</td>
                 <td>9</td>
-                <td>44</td>
+                <td>70</td>
                 <td>23</td>
                 <td>21</td>
-                <td>-</td>
+                <td>26</td>
               </tr>
               <tr>
-                <td>28</td>
+                <td>35</td>
                 <td>Adrian Royce</td>
                 <td>M >40</td>
                 <td>9</td>
-                <td>44</td>
+                <td>70</td>
                 <td>23</td>
                 <td>21</td>
-                <td>-</td>
-              </tr>
-              <tr>
-                <td>28</td>
-                <td>Ruben Ripper</td>
-                <td>M U20</td>
-                <td>7</td>
-                <td>44</td>
-                <td>23</td>
-                <td>21</td>
-                <td>-</td>
+                <td>26</td>
               </tr>
             </tbody>
           </table>
@@ -717,7 +790,7 @@
           <br />
 
           <h3 id="round-one-results">Round One Results</h3>
-          <p>16 December 2024</p>
+          <p>16 December 2023</p>
 
           <table
             id="roundOne"
@@ -953,8 +1026,40 @@
               </tr>
               <tr>
                 <td>28 (DNS)</td>
-                <td>Jim Hutchison</td>
+                <td>Michael Cnops</td>
+                <td>M 30-39</td>
+                <td>-</td>
+                <td>-</td>
+                <td>23</td>
+              </tr>
+              <tr>
+                <td>28 (DNS)</td>
+                <td>Damien Clark</td>
+                <td>M 20-29</td>
+                <td>-</td>
+                <td>-</td>
+                <td>23</td>
+              </tr>
+              <tr>
+                <td>28 (DNS)</td>
+                <td>Ben Merlin</td>
                 <td>M >40</td>
+                <td>-</td>
+                <td>-</td>
+                <td>23</td>
+              </tr>
+              <tr>
+                <td>28 (DNS)</td>
+                <td>Rian Crowther</td>
+                <td>M 30-39</td>
+                <td>-</td>
+                <td>-</td>
+                <td>23</td>
+              </tr>
+              <tr>
+                <td>28 (DNS)</td>
+                <td>Ruben Ripper</td>
+                <td>M U20</td>
                 <td>-</td>
                 <td>-</td>
                 <td>23</td>
@@ -963,6 +1068,78 @@
                 <td>28 (DNS)</td>
                 <td>Andrew Parr</td>
                 <td>M 30-39</td>
+                <td>-</td>
+                <td>-</td>
+                <td>23</td>
+              </tr>
+              <tr>
+                <td>28 (DNS)</td>
+                <td>Charlie Coster</td>
+                <td>M 20-29</td>
+                <td>-</td>
+                <td>-</td>
+                <td>23</td>
+              </tr>
+              <tr>
+                <td>28 (DNS)</td>
+                <td>Liam Dineen</td>
+                <td>M U20</td>
+                <td>-</td>
+                <td>-</td>
+                <td>23</td>
+              </tr>
+              <tr>
+                <td>28 (DNS)</td>
+                <td>Lincoln Dineen</td>
+                <td>M U20</td>
+                <td>-</td>
+                <td>-</td>
+                <td>23</td>
+              </tr>
+              <tr>
+                <td>28 (DNS)</td>
+                <td>Ryan Dineen</td>
+                <td>M U20</td>
+                <td>-</td>
+                <td>-</td>
+                <td>23</td>
+              </tr>
+              <tr>
+                <td>28 (DNS)</td>
+                <td>Aidan Dineen</td>
+                <td>M 30-39</td>
+                <td>-</td>
+                <td>-</td>
+                <td>23</td>
+              </tr>
+              <tr>
+                <td>28 (DNS)</td>
+                <td>Amity Gross</td>
+                <td>F U20</td>
+                <td>-</td>
+                <td>-</td>
+                <td>6</td>
+              </tr>
+              <tr>
+                <td>28 (DNS)</td>
+                <td>Jess Mikitis</td>
+                <td>F 20-29</td>
+                <td>-</td>
+                <td>-</td>
+                <td>6</td>
+              </tr>
+              <tr>
+                <td>28 (DNS)</td>
+                <td>Rob Singleton</td>
+                <td>M 30-39</td>
+                <td>-</td>
+                <td>-</td>
+                <td>23</td>
+              </tr>
+              <tr>
+                <td>28 (DNS)</td>
+                <td>Jim Hutchison</td>
+                <td>M >40</td>
                 <td>-</td>
                 <td>-</td>
                 <td>23</td>
@@ -981,11 +1158,8 @@
           <br />
           <br />
 
-          <br />
-          <br />
-
           <h3 id="round-two-results">Round Two Results</h3>
-          <p>11 January 2025</p>
+          <p>6 January 2024</p>
 
           <table
             id="roundTwo"
@@ -1197,8 +1371,80 @@
               </tr>
               <tr>
                 <td>25 (DNS)</td>
-                <td>Marina Geffrelot</td>
-                <td>F >40</td>
+                <td>Damien Clark</td>
+                <td>M 20-29</td>
+                <td>-</td>
+                <td>-</td>
+                <td>21</td>
+              </tr>
+              <tr>
+                <td>25 (DNS)</td>
+                <td>Liam McCarthy</td>
+                <td>M 20-29</td>
+                <td>-</td>
+                <td>-</td>
+                <td>21</td>
+              </tr>
+              <tr>
+                <td>25 (DNS)</td>
+                <td>Rian Crowther</td>
+                <td>M 30-39</td>
+                <td>-</td>
+                <td>-</td>
+                <td>21</td>
+              </tr>
+              <tr>
+                <td>25 (DNS)</td>
+                <td>Ruben Ripper</td>
+                <td>M U20</td>
+                <td>-</td>
+                <td>-</td>
+                <td>21</td>
+              </tr>
+              <tr>
+                <td>25 (DNS)</td>
+                <td>Liam Dineen</td>
+                <td>M U20</td>
+                <td>-</td>
+                <td>-</td>
+                <td>21</td>
+              </tr>
+              <tr>
+                <td>25 (DNS)</td>
+                <td>Hector Gross</td>
+                <td>M U20</td>
+                <td>-</td>
+                <td>-</td>
+                <td>21</td>
+              </tr>
+              <tr>
+                <td>25 (DNS)</td>
+                <td>Lincoln Dineen</td>
+                <td>M U20</td>
+                <td>-</td>
+                <td>-</td>
+                <td>21</td>
+              </tr>
+              <tr>
+                <td>25 (DNS)</td>
+                <td>Ryan Dineen</td>
+                <td>M U20</td>
+                <td>-</td>
+                <td>-</td>
+                <td>21</td>
+              </tr>
+              <tr>
+                <td>25 (DNS)</td>
+                <td>Aidan Dineen</td>
+                <td>M 30-39</td>
+                <td>-</td>
+                <td>-</td>
+                <td>21</td>
+              </tr>
+              <tr>
+                <td>25 (DNS)</td>
+                <td>Amity Gross</td>
+                <td>F U20</td>
                 <td>-</td>
                 <td>-</td>
                 <td>5</td>
@@ -1213,16 +1459,16 @@
               </tr>
               <tr>
                 <td>25 (DNS)</td>
-                <td>Ewan McFadzen</td>
-                <td>M U20</td>
+                <td>Marina Geffrelot</td>
+                <td>F >40</td>
                 <td>-</td>
                 <td>-</td>
-                <td>21</td>
+                <td>5</td>
               </tr>
               <tr>
                 <td>25 (DNS)</td>
-                <td>Liam McCarthy</td>
-                <td>M 20-29</td>
+                <td>Ewan McFadzen</td>
+                <td>M U20</td>
                 <td>-</td>
                 <td>-</td>
                 <td>21</td>
@@ -1261,22 +1507,6 @@
               </tr>
               <tr>
                 <td>25 (DNS)</td>
-                <td>Hector Gross</td>
-                <td>M U20</td>
-                <td>-</td>
-                <td>-</td>
-                <td>21</td>
-              </tr>
-              <tr>
-                <td>25 (DNS)</td>
-                <td>Damien Clark</td>
-                <td>M 20-29</td>
-                <td>-</td>
-                <td>-</td>
-                <td>21</td>
-              </tr>
-              <tr>
-                <td>25 (DNS)</td>
                 <td>Jim Hutchison</td>
                 <td>M >40</td>
                 <td>-</td>
@@ -1291,20 +1521,379 @@
                 <td>-</td>
                 <td>21</td>
               </tr>
+            </tbody>
+          </table>
+
+          <br />
+          <br />
+
+          <h3 id="round-three-results">Round Three Results</h3>
+          <p>20 January 2024</p>
+
+          <table
+            id="roundThree"
+            class="results display nowrap"
+            style="width: 100%"
+          >
+            <thead>
               <tr>
-                <td>25 (DNS)</td>
+                <th>Position</th>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Gender Position</th>
+                <th>Age Group Position</th>
+                <th>Points</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>01</td>
+                <td>Michael Cnops</td>
+                <td>M 30-39</td>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+              </tr>
+              <tr>
+                <td>02</td>
+                <td>Taz Savage</td>
+                <td>M 30-39</td>
+                <td>2</td>
+                <td>2</td>
+                <td>2</td>
+              </tr>
+              <tr>
+                <td>03</td>
+                <td>Jon Hansen</td>
+                <td>M >40</td>
+                <td>3</td>
+                <td>1</td>
+                <td>3</td>
+              </tr>
+              <tr>
+                <td>04</td>
+                <td>Damien Clark</td>
+                <td>M 20-29</td>
+                <td>4</td>
+                <td>1</td>
+                <td>4</td>
+              </tr>
+              <tr>
+                <td>05</td>
+                <td>Liam McCarthy</td>
+                <td>M 20-29</td>
+                <td>5</td>
+                <td>2</td>
+                <td>5</td>
+              </tr>
+              <tr>
+                <td>06</td>
+                <td>Dan Storey</td>
+                <td>M >40</td>
+                <td>6</td>
+                <td>2</td>
+                <td>6</td>
+              </tr>
+              <tr>
+                <td>07</td>
+                <td>Oscar Merlin</td>
+                <td>M U20</td>
+                <td>7</td>
+                <td>1</td>
+                <td>7</td>
+              </tr>
+              <tr>
+                <td>08</td>
+                <td>Ben Merlin</td>
+                <td>M >40</td>
+                <td>8</td>
+                <td>3</td>
+                <td>8</td>
+              </tr>
+              <tr>
+                <td>09</td>
+                <td>Rian Crowther</td>
+                <td>M 30-39</td>
+                <td>9</td>
+                <td>3</td>
+                <td>9</td>
+              </tr>
+              <tr>
+                <td>10</td>
+                <td>Michael McGowan</td>
+                <td>M 30-39</td>
+                <td>10</td>
+                <td>4</td>
+                <td>10</td>
+              </tr>
+              <tr>
+                <td>11</td>
+                <td>Reuben Casey</td>
+                <td>M U20</td>
+                <td>11</td>
+                <td>2</td>
+                <td>11</td>
+              </tr>
+              <tr>
+                <td>12</td>
+                <td>Jassi Grewal</td>
+                <td>M 30-39</td>
+                <td>12</td>
+                <td>5</td>
+                <td>12</td>
+              </tr>
+              <tr>
+                <td>13</td>
+                <td>Thomas Merlin</td>
+                <td>M U20</td>
+                <td>13</td>
+                <td>3</td>
+                <td>13</td>
+              </tr>
+              <tr>
+                <td>14</td>
+                <td>Mitchell Collins</td>
+                <td>M 20-29</td>
+                <td>14</td>
+                <td>3</td>
+                <td>14</td>
+              </tr>
+              <tr>
+                <td>15</td>
+                <td>Lisa Dineen</td>
+                <td>F 30-39</td>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+              </tr>
+              <tr>
+                <td>16</td>
+                <td>Tamika Hassum</td>
+                <td>F 20-29</td>
+                <td>2</td>
+                <td>1</td>
+                <td>2</td>
+              </tr>
+              <tr>
+                <td>17</td>
                 <td>Ruben Ripper</td>
+                <td>M U20</td>
+                <td>15</td>
+                <td>4</td>
+                <td>15</td>
+              </tr>
+              <tr>
+                <td>18</td>
+                <td>Andrew Parr</td>
+                <td>M 30-39</td>
+                <td>16</td>
+                <td>6</td>
+                <td>16</td>
+              </tr>
+              <tr>
+                <td>19</td>
+                <td>Camden Casey</td>
+                <td>M 30-39</td>
+                <td>17</td>
+                <td>7</td>
+                <td>17</td>
+              </tr>
+              <tr>
+                <td>20</td>
+                <td>Maree Morris</td>
+                <td>F 30-39</td>
+                <td>3</td>
+                <td>2</td>
+                <td>3</td>
+              </tr>
+              <tr>
+                <td>21</td>
+                <td>Joshua Merlin</td>
+                <td>M U20</td>
+                <td>18</td>
+                <td>5</td>
+                <td>18</td>
+              </tr>
+              <tr>
+                <td>22</td>
+                <td>Mark Hilmer</td>
+                <td>M >40</td>
+                <td>19</td>
+                <td>4</td>
+                <td>19</td>
+              </tr>
+              <tr>
+                <td>23</td>
+                <td>Charlie Coster</td>
+                <td>M 20-29</td>
+                <td>20</td>
+                <td>4</td>
+                <td>20</td>
+              </tr>
+              <tr>
+                <td>24</td>
+                <td>Liam Dineen</td>
+                <td>M U20</td>
+                <td>21</td>
+                <td>6</td>
+                <td>21</td>
+              </tr>
+              <tr>
+                <td>25</td>
+                <td>Hector Gross</td>
+                <td>M U20</td>
+                <td>22</td>
+                <td>7</td>
+                <td>22</td>
+              </tr>
+              <tr>
+                <td>26</td>
+                <td>Lincoln Dineen</td>
+                <td>M U20</td>
+                <td>23</td>
+                <td>8</td>
+                <td>23</td>
+              </tr>
+              <tr>
+                <td>27</td>
+                <td>Ryan Dineen</td>
+                <td>M U20</td>
+                <td>24</td>
+                <td>9</td>
+                <td>24</td>
+              </tr>
+              <tr>
+                <td>28</td>
+                <td>Aidan Dineen</td>
+                <td>M 30-39</td>
+                <td>25</td>
+                <td>8</td>
+                <td>25</td>
+              </tr>
+              <tr>
+                <td>29</td>
+                <td>Amity Gross</td>
+                <td>F U20</td>
+                <td>4</td>
+                <td>1</td>
+                <td>4</td>
+              </tr>
+              <tr>
+                <td>30</td>
+                <td>Rikki Gross</td>
+                <td>F 30-39</td>
+                <td>5</td>
+                <td>3</td>
+                <td>5</td>
+              </tr>
+              <tr>
+                <td>31 (DNS)</td>
+                <td>Marina Geffrelot</td>
+                <td>F >40</td>
+                <td>-</td>
+                <td>-</td>
+                <td>6</td>
+              </tr>
+              <tr>
+                <td>31 (DNS)</td>
+                <td>Jess Mikitis</td>
+                <td>F 20-29</td>
+                <td>-</td>
+                <td>-</td>
+                <td>6</td>
+              </tr>
+              <tr>
+                <td>31 (DNS)</td>
+                <td>Ewan McFadzen</td>
                 <td>M U20</td>
                 <td>-</td>
                 <td>-</td>
-                <td>21</td>
+                <td>26</td>
+              </tr>
+              <tr>
+                <td>31 (DNS)</td>
+                <td>William Lacy</td>
+                <td>M 30-39</td>
+                <td>-</td>
+                <td>-</td>
+                <td>26</td>
+              </tr>
+              <tr>
+                <td>31 (DNS)</td>
+                <td>Sascha Hilgers</td>
+                <td>M 30-39</td>
+                <td>-</td>
+                <td>-</td>
+                <td>26</td>
+              </tr>
+              <tr>
+                <td>31 (DNS)</td>
+                <td>Shane Price</td>
+                <td>M >40</td>
+                <td>-</td>
+                <td>-</td>
+                <td>26</td>
+              </tr>
+              <tr>
+                <td>31 (DNS)</td>
+                <td>Mat Scott</td>
+                <td>M >40</td>
+                <td>-</td>
+                <td>-</td>
+                <td>26</td>
+              </tr>
+              <tr>
+                <td>31 (DNS)</td>
+                <td>Carl Batty</td>
+                <td>M >40</td>
+                <td>-</td>
+                <td>-</td>
+                <td>26</td>
+              </tr>
+              <tr>
+                <td>31 (DNS)</td>
+                <td>Rob Singleton</td>
+                <td>M 30-39</td>
+                <td>-</td>
+                <td>-</td>
+                <td>26</td>
+              </tr>
+              <tr>
+                <td>31 (DNS)</td>
+                <td>Paul Dodd</td>
+                <td>M >40</td>
+                <td>-</td>
+                <td>-</td>
+                <td>26</td>
+              </tr>
+              <tr>
+                <td>31 (DNS)</td>
+                <td>Benjamin Wells</td>
+                <td>M 30-39</td>
+                <td>-</td>
+                <td>-</td>
+                <td>26</td>
+              </tr>
+              <tr>
+                <td>31 (DNS)</td>
+                <td>Jim Hutchison</td>
+                <td>M >40</td>
+                <td>-</td>
+                <td>-</td>
+                <td>26</td>
+              </tr>
+              <tr>
+                <td>31 (DNS)</td>
+                <td>Adrian Royce</td>
+                <td>M >40</td>
+                <td>-</td>
+                <td>-</td>
+                <td>26</td>
               </tr>
             </tbody>
           </table>
 
-          <h3 id="individual-results">Round Three Results</h3>
-
-          <p>Results will be posted here at the conclusion of the event.</p>
+          <!-- RESULTS GO ABOVE ^^^ -->
         </div>
       </section>
 
