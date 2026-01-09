@@ -342,28 +342,17 @@
           >
           </iframe>
           <!-- Load iframe-resizer from CDN -->
-          <script src="https://cdn.jsdelivr.net/npm/@iframe-resizer/parent@5/index.umd.js"></script>
+          <script src="https://unpkg.com/iframe-resizer@4/js/iframeResizer.min.js"></script>
           <!-- Initialize iframe-resizer -->
           <script>
-            document.addEventListener("DOMContentLoaded", function () {
-              iframeResize(
-                {
-                  log: true, // Remove this in production
-                  checkOrigin: false,
-                  heightCalculationMethod: "lowestElement",
-                  minHeight: 400,
-                  tolerance: 10,
-                  direction: "vertical",
-                  onResized: function (messageData) {
-                    console.log("Iframe height:", messageData.height + "px");
-                  },
-                  onInit: function (iframe) {
-                    console.log("Iframe ready:", iframe.id);
-                  },
-                },
-                "#chiron-events-iframe"
-              );
-            });
+            iFrameResize(
+              {
+                checkOrigin: false,
+                heightCalculationMethod: "lowestElement",
+                tolerance: 5,
+              },
+              "#chiron-events-iframe"
+            );
           </script>
         </div>
       </section>
