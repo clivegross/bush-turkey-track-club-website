@@ -350,10 +350,10 @@
                 {
                   log: true, // Remove this in production
                   checkOrigin: false,
-                  heightCalculationMethod: "max",
+                  heightCalculationMethod: "lowestElement",
                   minHeight: 400,
                   tolerance: 10,
-                  autoResize: true,
+                  direction: "vertical",
                   onResized: function (messageData) {
                     console.log("Iframe height:", messageData.height + "px");
                   },
