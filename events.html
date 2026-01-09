@@ -336,26 +336,33 @@
           <iframe
             id="chiron-events-iframe"
             src="https://events.chironapp.com/series/f60bf104-4903-4e8e-b4e1-dd9ef73193e5"
-            style="width: 100%; min-height: 500px; border: none; display: block"
+            style="width: 100%; border: none"
             scrolling="no"
             allowfullscreen
           >
           </iframe>
+          <!-- Load iframe-resizer from CDN -->
+          <script src="https://cdn.jsdelivr.net/npm/@iframe-resizer/parent@5/index.umd.js"></script>
+          <!-- Initialize iframe-resizer -->
           <script>
-            // Listen for height messages from Chiron Events iframe
-            window.addEventListener("message", function (event) {
-              // Verify message is from Chiron Events
-              if (event.origin !== "https://events.chironapp.com") return;
-              if (
-                event.data &&
-                event.data.type === "chiron:iframe:resize" &&
-                event.data.source === "chiron-events"
-              ) {
-                var iframe = document.getElementById("chiron-events-iframe");
-                if (iframe) {
-                  iframe.style.height = event.data.height + "px";
-                }
-              }
+            document.addEventListener("DOMContentLoaded", function () {
+              iframeResize(
+                {
+                  log: true, // Remove this in production
+                  checkOrigin: false,
+                  heightCalculationMethod: "max",
+                  minHeight: 400,
+                  tolerance: 10,
+                  autoResize: true,
+                  onResized: function (messageData) {
+                    console.log("Iframe height:", messageData.height + "px");
+                  },
+                  onInit: function (iframe) {
+                    console.log("Iframe ready:", iframe.id);
+                  },
+                },
+                "#chiron-events-iframe"
+              );
             });
           </script>
         </div>
