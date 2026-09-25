@@ -162,6 +162,93 @@ User asks to:
 
 ---
 
+## Task 4: Managing Team Members
+
+### When to Apply This Task
+User asks to:
+- Add new members to the team roster
+- Remove members from the team roster
+- Update existing member information
+
+### Team Members Location
+Team members are listed in `about.html` under the "Meet the Team" section (lines 181-251). The members are organized in a `div class="items style1 small"` container.
+
+### Team Member Structure
+Each team member is formatted as:
+```html
+<section><p>Member Name</p></section>
+```
+
+**Important**: Members are listed in **alphabetical order by last name** (or by full name alphabetically).
+
+### Process for Adding Members
+
+1. **Locate the correct alphabetical position**
+   - Determine where the new member fits alphabetically
+   - Consider the full name (typically Last Name, First Name or First Name Last Name pattern observed)
+   - Insert at the correct position to maintain alphabetical order
+
+2. **Add the member entry**
+   - Create a new section tag with the member's name in a paragraph
+   - Format: `<section><p>First Name Last Name</p></section>`
+
+3. **Verify alphabetical order**
+   - Ensure the entry fits properly between adjacent members
+   - Check that the overall list remains alphabetically sorted
+
+### Example: Adding a New Member
+
+**Current roster snippet:**
+```html
+<section><p>Alistair Murray</p></section>
+<section><p>Claire O'Brien</p></section>
+<section><p>Andrew Parr</p></section>
+```
+
+**After adding "Neville Norton":**
+```html
+<section><p>Alistair Murray</p></section>
+<section><p>Neville Norton</p></section>
+<section><p>Claire O'Brien</p></section>
+<section><p>Andrew Parr</p></section>
+```
+
+### Process for Removing Members
+
+1. **Locate the member** to be removed
+   - Search by first or last name in the alphabetical list
+
+2. **Delete the entire section**
+   - Remove the complete `<section><p>Name</p></section>` element
+   - Do not leave any orphaned tags or blank sections
+
+3. **Verify list integrity**
+   - Ensure no formatting breaks remain
+   - Confirm alphabetical order is still correct
+
+### Example: Removing a Member
+
+**Current roster snippet:**
+```html
+<section><p>Joshua Hinwood</p></section>
+<section><p>Bluey Hodgson</p></section>
+<section><p>Jo Hogan</p></section>
+```
+
+**After removing "Bluey Hodgson":**
+```html
+<section><p>Joshua Hinwood</p></section>
+<section><p>Jo Hogan</p></section>
+```
+
+### Additional Maintenance
+
+- **Update last modified date**: After adding or removing members, update the "Last updated" date in the about.html header (currently "3 March 2024")
+- **Case sensitivity**: Preserve the exact capitalization of names as provided (e.g., "GREWAL" in capitals, "Cecylia" with specific spelling)
+- **Consistency check**: Verify no duplicate names exist in the roster
+
+---
+
 ## General Guidelines
 
 - **Year assumption**: If a year is not explicitly stated by the user, assume 2026
@@ -180,3 +267,4 @@ User asks to:
 | Update Records | `records.html` | Name, Time, Distance, Gender, Year |
 | Upcoming Event | `index.html` + new file | Event date, details, previous event page |
 | Previous Event | New `.html` file | Event info, results, photos, previous events |
+| Manage Team | `about.html` | Member name, action (add/remove) |
