@@ -12,11 +12,11 @@ User asks to update club records with new race results (e.g., "Add John's new 5K
 
 ### Required Information
 The user must provide:
-- **Athlete name** (at least 1)
+- **Athlete name** - First and last name required. If only first name is provided, check if it matches an existing record holder. If a match is found, use their existing full name. If no match is found, advise the user and request the full name.
 - **Finish time** 
 - **Race distance** (3000m, 5km, 10km, half marathon, or marathon)
 - **Sex/Gender** (Men or Women)
-- Year (if not provided, assume the current year: 2026)
+- Year (if not provided, ask the user to clarify)
 
 ### Record Categories & Structure
 Records are organized in `records.html` with these distance categories and ID anchors:
@@ -31,12 +31,15 @@ Records are organized in `records.html` with these distance categories and ID an
 
 ### Process for Updating Records
 
+**IMPORTANT**: Records only display the **top 3 results** for each category. If the user's result is slower than the current 3rd place time, advise the user that it does not qualify for the records list and await further instruction.
+
 1. **Locate the correct distance section** in `records.html` using the ID anchors above
 2. **Identify the gender category** (Men or Women) within that section
 3. **Analyze the existing records** - they are in descending speed order (fastest first)
-4. **Determine placement** - insert the new record in the correct position based on time
-5. **Format the entry**: `<li>Name - Time (Year)</li>`
-6. **Update last modified date** - Change the "Last updated" date in the header (currently "June 2026")
+4. **Check if result qualifies** - Verify the time is faster than the current 3rd place. If not, inform the user and do not proceed.
+5. **Determine placement** - insert the new record in the correct position based on time (removing the slowest record if necessary to maintain top 3)
+6. **Format the entry**: `<li>Name - Time (Year)</li>`
+7. **Update last modified date** - Change the "Last updated" date in the header (currently "June 2026")
 
 ### Example Record Update
 
@@ -50,14 +53,13 @@ Records are organized in `records.html` with these distance categories and ID an
 </ol>
 ```
 
-**After updating with a new 10km record:**
+**After updating with a new 10km record (note: Michael Cnops' 4th place time is removed):**
 ```html
 <h4>Men</h4>
 <ol>
   <li>John Smith - 32:35 (2026)</li>
   <li>Clive Gross - 32:40 (2025)</li>
   <li>Stephen Butcher - 32:54 (2025)</li>
-  <li>Michael Cnops - 33:08 (2025)</li>
 </ol>
 ```
 
@@ -75,9 +77,9 @@ User asks to update the website for an upcoming event (e.g., "Update the website
    - Replace it with details of the new upcoming event
    - Remove the previous event from the "upcoming" section
 
-2. **Retire the previous upcoming event**
-   - The old upcoming event becomes a "previous event" 
-   - It should be archived or moved to the events page
+2. **Archive the previous upcoming event**
+   - The old upcoming event becomes a "previous event" on the new event page
+   - Add a link to the old event page at the TOP of the "Previous Events" section of the new upcoming event page
 
 3. **Create a new HTML document for the upcoming event**
    - File naming: Use a descriptive name (e.g., `bush-turkey-classic-2026.html`)
