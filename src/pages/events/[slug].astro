@@ -9,7 +9,8 @@ import ResultsTable from "../../components/ResultsTable.astro";
 import StatusBadge from "../../components/StatusBadge.astro";
 import { SERIES } from "../../consts";
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { eventStatus, formatDateRange, formatLongDate, getEvents, type EventEntry } from "../../lib/events";
+import HeroFallback from "../../components/HeroFallback.astro";
+import { eventStatus, formatEventDate, formatLongDate, getEvents, type EventEntry } from "../../lib/events";
 
 export async function getStaticPaths() {
   const events = await getEvents();
@@ -29,7 +30,7 @@ interface Props {
 }
 
 const { event, editions } = Astro.props;
-const { title, series, date, endDate, time, location, summary, hero, heroAlt, links, registerUrl, photosUrl, rounds, results, gallery } =
+const { title, series, time, location, summary, hero, heroAlt, links, registerUrl, photosUrl, rounds, results, gallery } =
   event.data;
 const status = eventStatus(event);
 const { Content } = await render(event);
@@ -41,14 +42,14 @@ const { Content } = await render(event);
     <div class="container-page grid gap-8 py-10 md:grid-cols-[1fr_1.2fr] md:items-center md:py-14">
       <div>
         <div class="flex flex-wrap items-center gap-3">
-          <StatusBadge status={status} />
+          <StatusBadge event={event} />
           <a href="/events/" class="eyebrow text-wattle hover:underline">{SERIES[series].label}</a>
         </div>
         <h1 class="mt-3 text-6xl leading-[0.9] sm:text-7xl">{title}</h1>
         <ul class="mt-5 space-y-2 text-white/85">
           <li class="flex items-center gap-2">
             <Icon name="calendar" class="size-4 text-wattle" />
-            {endDate ? formatDateRange(date, endDate) : formatLongDate(date)}
+            {formatEventDate(event, true)}
             {time && ` · ${time}`}
           </li>
           {
@@ -79,14 +80,20 @@ const { Content } = await render(event);
           {photosUrl && <Button href={photosUrl} variant="light" icon="camera">Photos</Button>}
         </div>
       </div>
-      <Image
-        src={hero}
-        alt={heroAlt}
-        widths={[480, 800, 1200]}
-        sizes="(min-width: 768px) 55vw, 100vw"
-        loading="eager"
-        class="w-full rounded-2xl shadow-2xl ring-1 ring-white/10"
-      />
+      {
+        hero ? (
+          <Image
+            src={hero}
+            alt={heroAlt ?? ""}
+            widths={[480, 800, 1200]}
+            sizes="(min-width: 768px) 55vw, 100vw"
+            loading="eager"
+            class="w-full rounded-2xl shadow-2xl ring-1 ring-white/10"
+          />
+        ) : (
+          <HeroFallback label={SERIES[series].label} class="aspect-video rounded-2xl ring-1 ring-white/10" />
+        )
+      }
     </div>
   </section>
 

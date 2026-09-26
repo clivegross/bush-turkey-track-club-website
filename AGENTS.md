@@ -97,7 +97,8 @@ The user asks to set up the website for a new event (e.g. "Update the website fo
    Remove `results` until results exist (or add the Chiron IDs if already known, see Task 3).
 4. **Update the body text** below the frontmatter (description, warnings, scoring rules).
 5. **Hero image**: put it in the event folder (`hero.jpg`) with descriptive `heroAlt` text. Any size or format
-   works; Astro resizes and converts it. Prefer landscape photos; posters with text are fine too.
+   works; Astro resizes and converts it. Prefer landscape photos; posters with text are fine too. If there's
+   no image yet, leave `hero` out and the club logo is shown instead.
 
 That's all. The home page, events list and the previous edition's page update themselves when the site is
 built. **Do not** edit `index.astro`, `events/index.astro` or other event pages to add links.
@@ -112,13 +113,15 @@ title: Bush Turkey Classic 2026–27          # shown on cards and the event pag
 series: bush-turkey-classic                 # key from SERIES in src/consts.ts
 date: 2026-12-12                            # race day, or first round
 endDate: 2027-01-30                         # optional: last round of a series
+monthOnly: false                            # optional: true shows "April 2024" when the day isn't known
 time: 5:00 PM                               # optional: single-day start time
 location:                                   # optional
   name: Deagon Speedway
   mapUrl: "https://maps.app.goo.gl/..."
 summary: One or two sentences for cards and social previews.
-hero: ./hero.jpg
-heroAlt: What the hero image shows
+hero: ./hero.jpg                            # optional: without it the card shows the club logo
+heroAlt: What the hero image shows          # required when hero is set
+heroFit: cover                              # optional: "contain" for logos/posters that crop badly on cards
 registerUrl: "https://www.revolutionise.com.au/bushturkeytc/shop"  # optional, hidden after the event
 photosUrl: "https://photos.app.goo.gl/..."  # optional: external album
 links:                                      # optional: extra buttons in the header
@@ -189,7 +192,7 @@ race day. Optionally, once results are final, save a CSV export in the event fol
    ```
    `filters` names columns to offer as dropdown filters. The table always has click-to-sort columns and a
    name search. A column named `Position`/`Place` shows medals for places 1–3.
-3. To convert an old HTML page's tables: `python3 scripts/legacy-tables-to-csv.py legacy/<page>.html <out-dir>/`
+3. To convert tables from an HTML page: `python3 scripts/legacy-tables-to-csv.py <page>.html <out-dir>/`
 
 ### C. Results hosted elsewhere
 ```yaml
@@ -200,6 +203,9 @@ results:
 ```
 
 ### Photos
+Past events are badged **Results** when they have `results`, **Photos** when they have `photosUrl` or a
+`gallery`, and **Past event** otherwise.
+
 Put photos in the event folder (e.g. `photos/`) and list them with alt text. Link the full album with
 `photosUrl`.
 ```yaml
@@ -236,21 +242,19 @@ src/
   lib/                   event status and date helpers, CSV and time parsing
   pages/                 routes: index, events/, events/[slug], records, about, running-calculator
   redirects.mjs          old *.html URLs → new pages
-public/                  copied as-is: CNAME, favicons, calculator scripts
-legacy/                  the pre-Astro site, kept only until migration is finished
-scripts/                 migration helpers
+public/                  copied as-is: CNAME, favicons, calculator scripts, videos (public/events/<slug>/)
+scripts/                 helpers, e.g. converting HTML results tables to CSV
 ```
 
-## Migrating a Legacy Page (during the conversion)
+## Club Racing and Other One-off Events
 
-1. Create `src/content/events/<slug>/index.md` from the legacy page's content (see the frontmatter reference).
-   Keep the legacy file name as the slug where sensible, but normalise to `<series>-<year>`
-   (e.g. `bush_turkey_relay_2022.html` → `bush-turkey-relay-2022`).
-2. Copy its images from `legacy/images/` into the event folder.
-3. Convert results tables with `scripts/legacy-tables-to-csv.py` and use `results.source: data`.
-4. Add the old URL to `legacyRedirects` in `src/redirects.mjs`, e.g.
-   `"/bush_turkey_relay_2022.html": "/events/bush-turkey-relay-2022/"`.
-5. Photo-album-only events (no legacy page) become short entries with `photosUrl` and a hero image.
+Club trips to outside races (marathons, championships) use `series: club-racing`, usually with
+`monthOnly: true`, a hero photo and `photosUrl`. They don't need results.
+
+## Videos
+
+Astro doesn't process video, so put video files in `public/events/<slug>/` and embed them in the event
+body with a `<video controls preload="metadata" playsinline class="w-full rounded-xl">` tag.
 
 ## General Guidelines
 

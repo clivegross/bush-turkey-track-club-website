@@ -1,7 +1,8 @@
 ---
 import { Image } from "astro:assets";
 import { SERIES } from "../consts";
-import { eventStatus, eventUrl, formatDateRange, type EventEntry } from "../lib/events";
+import { eventUrl, formatEventDate, type EventEntry } from "../lib/events";
+import HeroFallback from "./HeroFallback.astro";
 import StatusBadge from "./StatusBadge.astro";
 
 interface Props {
@@ -11,7 +12,7 @@ interface Props {
 }
 
 const { event, featured = false } = Astro.props;
-const { title, series, date, endDate, summary, hero, heroAlt } = event.data;
+const { title, series, summary, hero, heroAlt, heroFit } = event.data;
 ---
 
 <article
@@ -22,21 +23,27 @@ const { title, series, date, endDate, summary, hero, heroAlt } = event.data;
   data-series={series}
 >
   <div class:list={["relative overflow-hidden bg-navy-100", featured ? "aspect-video md:aspect-auto md:min-h-80 md:w-3/5" : "aspect-video"]}>
-    <Image
-      src={hero}
-      alt={heroAlt}
-      widths={featured ? [480, 800, 1200] : [400, 640, 800]}
-      sizes={featured ? "(min-width: 768px) 60vw, 100vw" : "(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"}
-      class="absolute inset-0 size-full object-cover transition duration-500 group-hover:scale-[1.03]"
-    />
-    <StatusBadge status={eventStatus(event)} class="absolute top-3 left-3" />
+    {
+      hero ? (
+        <Image
+          src={hero}
+          alt={heroAlt ?? ""}
+          widths={featured ? [480, 800, 1200] : [400, 640, 800]}
+          sizes={featured ? "(min-width: 768px) 60vw, 100vw" : "(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"}
+          class:list={["absolute inset-0 size-full transition duration-500 group-hover:scale-[1.03]", heroFit === "contain" ? "bg-white object-contain p-3" : "object-cover"]}
+        />
+      ) : (
+        <HeroFallback label={SERIES[series].label} class="absolute inset-0" />
+      )
+    }
+    <StatusBadge event={event} class="absolute top-3 left-3" />
   </div>
   <div class:list={["flex flex-1 flex-col", featured ? "gap-3 p-6 md:p-8" : "gap-2 p-5"]}>
     <p class="eyebrow">{SERIES[series].label}</p>
     <h3 class:list={["leading-none", featured ? "text-4xl md:text-5xl" : "text-3xl"]}>
       <a href={eventUrl(event)} class="after:absolute after:inset-0">{title}</a>
     </h3>
-    <p class="text-sm font-medium text-navy-600">{formatDateRange(date, endDate)}</p>
+    <p class="text-sm font-medium text-navy-600">{formatEventDate(event)}</p>
     <p class:list={["text-navy-800/80", featured ? "text-base" : "text-sm"]}>{summary}</p>
   </div>
 </article>
