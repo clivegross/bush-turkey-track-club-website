@@ -1,0 +1,58 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+@import "@fontsource/bebas-neue/400.css";
+@import "@fontsource-variable/inter";
+
+/* Brand tokens: navy, red and yellow from the club singlet and logo. */
+@theme {
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Bebas Neue", "Arial Narrow", ui-sans-serif, sans-serif;
+
+  --color-navy-50: #f2f4fb;
+  --color-navy-100: #e1e5f4;
+  --color-navy-200: #c4cbe6;
+  --color-navy-300: #9aa4cf;
+  --color-navy-600: #2b3576;
+  --color-navy-700: #1d2660;
+  --color-navy-800: #131a47;
+  --color-navy-900: #0b1030;
+  --color-navy-950: #060920;
+
+  --color-turkey: #d0101c;
+  --color-turkey-dark: #a50c16;
+  --color-wattle: #ffcc00;
+  --color-wattle-dark: #e0b000;
+}
+
+@layer base {
+  html {
+    @apply scroll-smooth bg-white text-navy-900 antialiased;
+  }
+  h1,
+  h2,
+  h3 {
+    @apply font-display tracking-wide;
+  }
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-turkey;
+  }
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-6xl px-4 sm:px-6;
+  }
+  .eyebrow {
+    @apply text-xs font-semibold tracking-[0.18em] text-turkey uppercase;
+  }
+  .prose-club {
+    @apply prose max-w-none prose-headings:font-display prose-headings:font-normal prose-headings:tracking-wide prose-headings:text-navy-900 prose-h2:text-3xl prose-a:text-turkey prose-a:decoration-2 prose-a:underline-offset-2 hover:prose-a:text-turkey-dark prose-strong:text-navy-900;
+  }
+  .prose-club blockquote {
+    @apply rounded-r-lg border-l-4 border-wattle bg-wattle/10 px-5 py-3 text-sm font-normal text-navy-800 not-italic;
+  }
+  .prose-club blockquote p::before,
+  .prose-club blockquote p::after {
+    content: none;
+  }
+}

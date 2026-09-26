@@ -1,0 +1,45 @@
+---
+import Button from "./Button.astro";
+
+interface Props {
+  type: "series" | "event";
+  id: string;
+  view?: string;
+  title?: string;
+}
+
+const { type, id, view, title = "Results" } = Astro.props;
+const src = `https://events.chironapp.com/${type === "series" ? "series" : "events"}/${id}${view ? `/${view}` : ""}`;
+---
+
+<div data-chiron>
+  <div class="flex flex-wrap items-center justify-between gap-3">
+    <p class="text-sm text-navy-600">Live results from Chiron race timing.</p>
+    <Button href={src} icon="trophy">Open full results</Button>
+  </div>
+  <iframe
+    src={src}
+    title={title}
+    loading="lazy"
+    class="mt-4 min-h-[900px] w-full rounded-xl border-0 bg-white ring-1 ring-navy-100"
+    allowfullscreen></iframe>
+</div>
+
+<script>
+  // Grow each Chiron iframe to fit its content (Chiron pages include the
+  // iframe-resizer content script). Until the first resize message arrives,
+  // or if it never does, the iframe keeps its fixed minimum height.
+  import iframeResize from "iframe-resizer/js/iframeResizer.js";
+
+  for (const frame of document.querySelectorAll<HTMLIFrameElement>("[data-chiron] iframe")) {
+    iframeResize(
+      {
+        checkOrigin: false,
+        heightCalculationMethod: "lowestElement",
+        tolerance: 5,
+        onResized: () => frame.classList.remove("min-h-[900px]"),
+      },
+      frame,
+    );
+  }
+</script>

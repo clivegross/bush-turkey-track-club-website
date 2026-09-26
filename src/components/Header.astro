@@ -1,0 +1,80 @@
+---
+import { Image } from "astro:assets";
+import logo from "../assets/logo.png";
+import { NAV, SITE } from "../consts";
+import Icon from "./Icon.astro";
+
+const path = Astro.url.pathname;
+const isActive = (href: string) => href !== "/" && path.startsWith(href);
+---
+
+<header class="sticky top-0 z-40 bg-navy-900 text-white shadow-lg shadow-navy-950/20">
+  <div class="container-page flex h-16 items-center justify-between gap-4">
+    <a href="/" class="flex items-center gap-3">
+      <Image src={logo} alt="" width={44} height={44} class="size-11 rounded-full bg-white" loading="eager" />
+      <span class="font-display text-2xl leading-none tracking-wider sm:text-[1.7rem]">{SITE.name}</span>
+    </a>
+
+    <nav aria-label="Main" class="hidden md:block">
+      <ul class="flex items-center gap-1">
+        {
+          NAV.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                target={item.external ? "_blank" : undefined}
+                rel={item.external ? "noopener noreferrer" : undefined}
+                aria-current={isActive(item.href) ? "page" : undefined}
+                class="rounded-full px-3 py-2 text-sm font-semibold text-white/80 transition-colors hover:bg-white/10 hover:text-white aria-[current=page]:text-wattle"
+              >
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <button
+      type="button"
+      class="group rounded-full p-2 hover:bg-white/10 md:hidden"
+      aria-controls="mobile-nav"
+      aria-expanded="false"
+      data-menu-toggle
+    >
+      <span class="sr-only">Menu</span>
+      <Icon name="menu" class="size-6 group-aria-expanded:hidden" />
+      <Icon name="close" class="hidden size-6 group-aria-expanded:block" />
+    </button>
+  </div>
+
+  <nav id="mobile-nav" aria-label="Main" class="hidden border-t border-white/10 md:hidden" data-menu>
+    <ul class="container-page flex flex-col py-2">
+      {
+        NAV.map((item) => (
+          <li>
+            <a
+              href={item.href}
+              target={item.external ? "_blank" : undefined}
+              rel={item.external ? "noopener noreferrer" : undefined}
+              aria-current={isActive(item.href) ? "page" : undefined}
+              class="block py-3 font-display text-2xl tracking-wider aria-[current=page]:text-wattle"
+            >
+              {item.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+</header>
+
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>("[data-menu-toggle]");
+  const menu = document.querySelector<HTMLElement>("[data-menu]");
+  toggle?.addEventListener("click", () => {
+    const open = toggle.getAttribute("aria-expanded") === "true";
+    toggle.setAttribute("aria-expanded", String(!open));
+    menu?.classList.toggle("hidden", open);
+  });
+</script>

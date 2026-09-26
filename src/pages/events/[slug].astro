@@ -1,0 +1,228 @@
+---
+import { Image } from "astro:assets";
+import { render } from "astro:content";
+import Button from "../../components/Button.astro";
+import ChironResults from "../../components/ChironResults.astro";
+import EventCard from "../../components/EventCard.astro";
+import Icon from "../../components/Icon.astro";
+import ResultsTable from "../../components/ResultsTable.astro";
+import StatusBadge from "../../components/StatusBadge.astro";
+import { SERIES } from "../../consts";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { eventStatus, formatDateRange, formatLongDate, getEvents, type EventEntry } from "../../lib/events";
+
+export async function getStaticPaths() {
+  const events = await getEvents();
+  return events.map((event) => ({
+    params: { slug: event.id },
+    props: {
+      event,
+      // Other editions of the same series, newest first.
+      editions: events.filter((e) => e.data.series === event.data.series && e.id !== event.id),
+    },
+  }));
+}
+
+interface Props {
+  event: EventEntry;
+  editions: EventEntry[];
+}
+
+const { event, editions } = Astro.props;
+const { title, series, date, endDate, time, location, summary, hero, heroAlt, links, registerUrl, photosUrl, rounds, results, gallery } =
+  event.data;
+const status = eventStatus(event);
+const { Content } = await render(event);
+---
+
+<BaseLayout title={title} description={summary} image={hero} imageAlt={heroAlt} type="article">
+  <!-- Header -->
+  <section class="bg-navy-900 text-white">
+    <div class="container-page grid gap-8 py-10 md:grid-cols-[1fr_1.2fr] md:items-center md:py-14">
+      <div>
+        <div class="flex flex-wrap items-center gap-3">
+          <StatusBadge status={status} />
+          <a href="/events/" class="eyebrow text-wattle hover:underline">{SERIES[series].label}</a>
+        </div>
+        <h1 class="mt-3 text-6xl leading-[0.9] sm:text-7xl">{title}</h1>
+        <ul class="mt-5 space-y-2 text-white/85">
+          <li class="flex items-center gap-2">
+            <Icon name="calendar" class="size-4 text-wattle" />
+            {endDate ? formatDateRange(date, endDate) : formatLongDate(date)}
+            {time && ` · ${time}`}
+          </li>
+          {
+            location && (
+              <li class="flex items-center gap-2">
+                <Icon name="pin" class="size-4 text-wattle" />
+                {location.mapUrl ? (
+                  <a href={location.mapUrl} target="_blank" rel="noopener noreferrer" class="underline">
+                    {location.name}
+                  </a>
+                ) : (
+                  location.name
+                )}
+              </li>
+            )
+          }
+        </ul>
+        <div class="mt-6 flex flex-wrap gap-2">
+          {results && <Button href="#results" variant="primary" icon="trophy">Results</Button>}
+          {registerUrl && status !== "completed" && <Button href={registerUrl} variant="primary" icon="ticket">Register</Button>}
+          {
+            links.map((link) => (
+              <Button href={link.url} variant="light">
+                {link.label}
+              </Button>
+            ))
+          }
+          {photosUrl && <Button href={photosUrl} variant="light" icon="camera">Photos</Button>}
+        </div>
+      </div>
+      <Image
+        src={hero}
+        alt={heroAlt}
+        widths={[480, 800, 1200]}
+        sizes="(min-width: 768px) 55vw, 100vw"
+        loading="eager"
+        class="w-full rounded-2xl shadow-2xl ring-1 ring-white/10"
+      />
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="container-page py-12">
+    <div class="prose-club max-w-3xl">
+      <Content />
+    </div>
+  </section>
+
+  <!-- Rounds -->
+  {
+    rounds.length > 0 && (
+      <section class="container-page" aria-labelledby="rounds">
+        <h2 id="rounds" class="text-5xl">Rounds</h2>
+        <ol class="mt-6 grid gap-6 lg:grid-cols-3">
+          {rounds.map((round, i) => (
+            <li class="flex flex-col overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-navy-100">
+              {round.image && (
+                <Image
+                  src={round.image}
+                  alt={round.imageAlt ?? round.name}
+                  widths={[400, 640]}
+                  sizes="(min-width: 1024px) 33vw, 100vw"
+                  class="aspect-square w-full object-cover"
+                />
+              )}
+              <div class="flex flex-1 flex-col gap-3 p-5">
+                <p class="eyebrow">Round {i + 1}</p>
+                <h3 class="text-3xl leading-none">{round.name.replace(/^Round \w+:\s*/, "")}</h3>
+                <p class="flex items-center gap-2 text-sm font-semibold text-navy-700">
+                  <Icon name="clock" class="size-4 text-turkey" />
+                  {formatLongDate(round.date)}
+                  {round.time && ` · ${round.time}`}
+                </p>
+                <p class="text-sm text-navy-800">{round.description}</p>
+                {round.meet && (
+                  <p class="text-sm text-navy-800">
+                    Meet{round.meet.time && ` at ${round.meet.time}`} at{" "}
+                    {round.meet.mapUrl ? (
+                      <a href={round.meet.mapUrl} target="_blank" rel="noopener noreferrer" class="font-semibold text-turkey underline">
+                        {round.meet.place}
+                      </a>
+                    ) : (
+                      <strong>{round.meet.place}</strong>
+                    )}{" "}
+                    for the warm up.
+                  </p>
+                )}
+                {round.links.length > 0 && (
+                  <div class="mt-auto flex flex-wrap gap-2 pt-2">
+                    {round.links.map((link) => (
+                      <Button href={link.url} icon={/course/i.test(link.label) ? "map" : undefined}>
+                        {link.label}
+                      </Button>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </li>
+          ))}
+        </ol>
+      </section>
+    )
+  }
+
+  <!-- Results -->
+  {
+    results && (
+      <section id="results" class="container-page scroll-mt-20 pt-14" aria-labelledby="results-heading">
+        <h2 id="results-heading" class="text-5xl">
+          Results
+        </h2>
+        <div class="mt-6 space-y-8">
+          {results.source === "chiron" && (
+            <ChironResults type={results.type} id={results.id} view={results.view} title={`${title} results`} />
+          )}
+          {results.source === "chiron" && results.archive && (
+            <ResultsTable eventId={event.id} file={results.archive} title="Final results (archived)" />
+          )}
+          {results.source === "data" &&
+            results.tables.map((table) => (
+              <ResultsTable eventId={event.id} file={table.file} title={table.title} note={table.note} filters={table.filters} />
+            ))}
+          {results.source === "link" && (
+            <Button href={results.url} variant="primary" icon="trophy">
+              {results.label}
+            </Button>
+          )}
+        </div>
+      </section>
+    )
+  }
+
+  <!-- Gallery -->
+  {
+    gallery.length > 0 && (
+      <section class="container-page pt-14" aria-labelledby="gallery">
+        <h2 id="gallery" class="text-5xl">
+          Photos
+        </h2>
+        <div class="mt-6 columns-1 gap-4 sm:columns-2 lg:columns-3">
+          {gallery.map((photo) => (
+            <Image
+              src={photo.image}
+              alt={photo.alt}
+              widths={[400, 800]}
+              sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+              class="mb-4 w-full rounded-xl"
+            />
+          ))}
+        </div>
+        {photosUrl && (
+          <div class="mt-4">
+            <Button href={photosUrl} icon="camera">
+              Full photo album
+            </Button>
+          </div>
+        )}
+      </section>
+    )
+  }
+
+  <!-- Other editions -->
+  {
+    editions.length > 0 && (
+      <section class="container-page pt-16" aria-labelledby="editions">
+        <h2 id="editions" class="text-5xl">
+          More {SERIES[series].label}
+        </h2>
+        <div class="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {editions.map((e) => (
+            <EventCard event={e} />
+          ))}
+        </div>
+      </section>
+    )
+  }
+</BaseLayout>
