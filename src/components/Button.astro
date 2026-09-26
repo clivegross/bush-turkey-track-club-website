@@ -1,0 +1,33 @@
+---
+import Icon, { type IconName } from "./Icon.astro";
+
+interface Props {
+  href: string;
+  variant?: "primary" | "secondary" | "light";
+  icon?: IconName;
+  class?: string;
+}
+
+const { href, variant = "secondary", icon, class: className } = Astro.props;
+const external = /^https?:\/\//.test(href);
+const styles = {
+  primary: "bg-turkey text-white hover:bg-turkey-dark",
+  secondary: "bg-white text-navy-900 ring-1 ring-navy-200 ring-inset hover:bg-navy-50",
+  light: "bg-white/10 text-white ring-1 ring-white/30 ring-inset hover:bg-white/20",
+};
+---
+
+<a
+  href={href}
+  target={external ? "_blank" : undefined}
+  rel={external ? "noopener noreferrer" : undefined}
+  class:list={[
+    "inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold transition-colors",
+    styles[variant],
+    className,
+  ]}
+>
+  {icon && <Icon name={icon} class="size-4" />}
+  <slot />
+  {external && <Icon name="external" class="size-3.5 opacity-60" label="(opens in a new tab)" />}
+</a>

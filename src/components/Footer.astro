@@ -1,0 +1,44 @@
+---
+import { LINKS, NAV, SITE } from "../consts";
+import Chevron from "./Chevron.astro";
+import Icon from "./Icon.astro";
+---
+
+<footer class="mt-24 bg-navy-900 text-white">
+  <Chevron class="-translate-y-px" />
+  <div class="container-page grid gap-10 py-12 sm:grid-cols-[2fr_1fr_1fr]">
+    <div>
+      <p class="font-display text-4xl tracking-wider">Gobble, gobble!</p>
+      <p class="mt-2 max-w-sm text-sm text-white/70">
+        A performance-focused amateur distance running club on Brisbane's Bramble Bay. DM us on Instagram to join us for
+        a run.
+      </p>
+      <div class="mt-5 flex gap-3">
+        <a href={LINKS.instagram} target="_blank" rel="noopener noreferrer" class="rounded-full bg-white/10 p-2.5 hover:bg-white/20">
+          <Icon name="instagram" label="Instagram" />
+        </a>
+        <a href={LINKS.strava} target="_blank" rel="noopener noreferrer" class="rounded-full bg-white/10 p-2.5 hover:bg-white/20">
+          <Icon name="strava" label="Strava" />
+        </a>
+      </div>
+    </div>
+    <nav aria-label="Footer">
+      <p class="eyebrow text-wattle">Explore</p>
+      <ul class="mt-3 space-y-2 text-sm text-white/80">
+        <li><a href="/" class="hover:text-white">Home</a></li>
+        {
+          NAV.map((item) => (
+            <li>
+              <a href={item.href} target={item.external ? "_blank" : undefined} class="hover:text-white">
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+    <div class="text-sm text-white/60 sm:self-end sm:text-right">
+      &copy; {new Date().getFullYear()} {SITE.name}
+    </div>
+  </div>
+</footer>

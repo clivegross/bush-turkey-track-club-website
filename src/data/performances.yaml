@@ -1,0 +1,47 @@
+# Club record performances. Append new results to the bottom of this list.
+# The records page sorts them automatically and shows each athlete's best
+# time, top 3 per distance and sex. Nothing ever needs to be removed.
+#
+# distance: marathon | half-marathon | 10km | 5km | 3000m
+# sex:      men | women
+# time:     h:mm:ss (marathon, half), mm:ss (10km, 5km), mm:ss.cc (3000m)
+
+# Marathon
+- { name: Clive Gross, distance: marathon, sex: men, time: "2:27:14", year: 2025 }
+- { name: Stephen Butcher, distance: marathon, sex: men, time: "2:36:26", year: 2025 }
+- { name: Taz Savage, distance: marathon, sex: men, time: "2:37:26", year: 2025 }
+- { name: Maddyson Mallet, distance: marathon, sex: women, time: "2:49:46", year: 2025 }
+- { name: Maggie Monckton, distance: marathon, sex: women, time: "2:59:06", year: 2025 }
+- { name: Amy Brackenbury, distance: marathon, sex: women, time: "3:07:38", year: 2025 }
+
+# Half marathon
+- { name: Clive Gross, distance: half-marathon, sex: men, time: "1:09:39", year: 2025 }
+- { name: Michael Cnops, distance: half-marathon, sex: men, time: "1:10:44", year: 2026 }
+- { name: Ewan McFadzen, distance: half-marathon, sex: men, time: "1:11:20", year: 2026 }
+- { name: Maggie Monckton, distance: half-marathon, sex: women, time: "1:21:06", year: 2025 }
+- { name: Cecylia Kubicki Garcia, distance: half-marathon, sex: women, time: "1:21:37", year: 2025 }
+- { name: Jessica Mikitis, distance: half-marathon, sex: women, time: "1:24:40", year: 2024 }
+
+# 10km
+- { name: Clive Gross, distance: 10km, sex: men, time: "32:40", year: 2025 }
+- { name: Stephen Butcher, distance: 10km, sex: men, time: "32:54", year: 2025 }
+- { name: Michael Cnops, distance: 10km, sex: men, time: "33:08", year: 2025 }
+- { name: Maddyson Mallet, distance: 10km, sex: women, time: "36:43", year: 2026 }
+- { name: Cecylia Kubicki Garcia, distance: 10km, sex: women, time: "36:55", year: 2024 }
+- { name: Maggie Monckton, distance: 10km, sex: women, time: "37:29", year: 2026 }
+
+# 5km
+- { name: Ewan McFadzen, distance: 5km, sex: men, time: "15:09", year: 2026 }
+- { name: Stephen Butcher, distance: 5km, sex: men, time: "15:14", year: 2026 }
+- { name: Clive Gross, distance: 5km, sex: men, time: "15:22", year: 2026 }
+- { name: Cecylia Kubicki Garcia, distance: 5km, sex: women, time: "17:40", year: 2025 }
+- { name: Maddyson Mallet, distance: 5km, sex: women, time: "17:43", year: 2025 }
+- { name: Maggie Monckton, distance: 5km, sex: women, time: "17:53", year: 2025 }
+
+# 3000m track
+- { name: Clive Gross, distance: 3000m, sex: men, time: "9:00.36", year: 2023 }
+- { name: Ewan McFadzen, distance: 3000m, sex: men, time: "9:09.48", year: 2023 }
+- { name: Liam McCarthy, distance: 3000m, sex: men, time: "9:22.85", year: 2025 }
+- { name: Cecylia Kubicki Garcia, distance: 3000m, sex: women, time: "10:12.29", year: 2025 }
+- { name: Charli Weinrauch, distance: 3000m, sex: women, time: "10:51.76", year: 2023 }
+- { name: Britt Chambers, distance: 3000m, sex: women, time: "11:00.40", year: 2023 }

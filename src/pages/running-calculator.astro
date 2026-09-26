@@ -1,0 +1,145 @@
+---
+import CalculatorTabs from "../components/CalculatorTabs.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Running Calculator"
+  description="Free running calculator for training zones, race pace prediction and time conversion. Calculate your optimal training paces based on recent race times."
+>
+  <section class="bg-navy-900 text-white">
+    <div class="container-page py-12">
+      <p class="eyebrow text-wattle">Tools</p>
+      <h1 class="text-6xl sm:text-7xl">Running calculator</h1>
+      <p class="mt-3 max-w-2xl text-white/75">
+        Enter a recent race result to calculate your training paces and predict race times.
+      </p>
+    </div>
+  </section>
+  <section class="container-page py-10">
+    <div class="calculator">
+      <CalculatorTabs />
+    </div>
+  </section>
+
+  <script>
+    // The legacy calculator scripts expect a global Chart (previously from a CDN).
+    import Chart from "chart.js/auto";
+    (window as unknown as { Chart: typeof Chart }).Chart = Chart;
+  </script>
+  <script is:inline src="/calculator/calculator.js"></script>
+  <script is:inline src="/calculator/plot.js"></script>
+  <script is:inline src="/calculator/tabs.js"></script>
+  <script is:inline>
+    function toggleChart() {
+      const pace = document.getElementById("paceChartRadio").checked;
+      document.getElementById("speedChartContainer").style.display = pace ? "none" : "block";
+      document.getElementById("paceChartContainer").style.display = pace ? "block" : "none";
+    }
+    function toggleRacePredictor() {
+      const useCs = document.getElementById("criticalSpeedRadio").checked;
+      document.getElementById("raceResultForm").style.display = useCs ? "none" : "block";
+      document.getElementById("raceResultContainer").style.display = useCs ? "none" : "block";
+    }
+    toggleChart();
+  </script>
+</BaseLayout>
+
+<style is:global>
+  /* Styles for the ported calculator markup (it uses plain HTML elements). */
+  .calculator h1 {
+    display: none;
+  }
+  .calculator h2,
+  .calculator h3 {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    letter-spacing: 0.025em;
+    margin: 2rem 0 0.75rem;
+  }
+  .calculator .tab {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .calculator .tablinks {
+    border-radius: 9999px;
+    padding: 0.5rem 1rem;
+    font-weight: 600;
+    font-size: 0.875rem;
+    box-shadow: inset 0 0 0 1px var(--color-navy-200);
+    cursor: pointer;
+  }
+  .calculator .tablinks.active {
+    background: var(--color-navy-900);
+    color: white;
+    box-shadow: none;
+  }
+  .calculator .tabcontent {
+    display: none;
+  }
+  .calculator form {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 0.75rem;
+    margin: 1rem 0;
+  }
+  .calculator form br {
+    flex-basis: 100%;
+    content: "";
+  }
+  .calculator form label {
+    font-weight: 600;
+    font-size: 0.875rem;
+  }
+  .calculator input[type="text"],
+  .calculator select {
+    border-radius: 0.5rem;
+    border: 1px solid var(--color-navy-200);
+    padding: 0.4rem 0.6rem;
+    width: 5.5rem;
+  }
+  .calculator input[type="button"] {
+    border-radius: 9999px;
+    background: var(--color-turkey);
+    color: white;
+    font-weight: 600;
+    padding: 0.55rem 1.4rem;
+    cursor: pointer;
+  }
+  .calculator input[type="button"]:hover {
+    background: var(--color-turkey-dark);
+  }
+  .calculator input[type="radio"] {
+    margin-right: 0.35rem;
+    accent-color: var(--color-turkey);
+  }
+  .calculator table {
+    display: block;
+    overflow-x: auto;
+    width: 100%;
+    font-size: 0.875rem;
+    border-collapse: collapse;
+  }
+  .calculator th {
+    background: var(--color-navy-900);
+    color: white;
+    text-align: left;
+    padding: 0.5rem 0.75rem;
+    white-space: nowrap;
+  }
+  .calculator td {
+    padding: 0.45rem 0.75rem;
+    border-bottom: 1px solid var(--color-navy-50);
+    white-space: nowrap;
+  }
+  .calculator tr:nth-child(even) td {
+    background: color-mix(in srgb, var(--color-navy-50) 50%, white);
+  }
+  .calculator a {
+    color: var(--color-turkey);
+    text-decoration: underline;
+  }
+</style>
