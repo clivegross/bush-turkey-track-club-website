@@ -3,17 +3,15 @@
 // Behaviour lives in public/calculator/*.js (see pages/running-calculator.astro).
 ---
   <!-- Tab links -->
-  <div class="tab" id="calc">
+  <div class="tab">
     <button
       class="tablinks active"
-      id="calc"
       onclick="openTab(event, 'Race Predictor')"
     >
       Race Predictor
     </button>
     <button
       class="tablinks"
-      id="calc"
       onclick="openTab(event, 'Track Calculator')"
     >
       Track Calculator
@@ -358,7 +356,7 @@
     </div>
   </div>
   <!-- Track Calculator -->
-  <div id="Track Calculator" class="tabcontent" id="defaultOpen">
+  <div id="Track Calculator" class="tabcontent">
     <div>Enter a target split.</div>
     <form>
       <label for="trackDistance">Distance (m)</label>
@@ -514,7 +512,7 @@
     </div>
   </div>
   <!-- Critical Speed -->
-  <div id="Critical Speed" class="tabcontent" id="defaultOpen">
+  <div id="Critical Speed" class="tabcontent">
     <form>
       <label
         >Enter a recent shorter race or time trial result (eg 800m - 1

@@ -27,7 +27,8 @@ function plotSpeedDurationChart(cs, yIntercept) {
   const durations = [];
   const speeds = [];
 
-  for (let i = 0; i <= 80; i++) {
+  // Start at 15 s: at 0 s, yIntercept / duration is infinite.
+  for (let i = 1; i <= 80; i++) {
     const durationInSeconds = i * 15; // Convert minutes to seconds
     const speed = cs + yIntercept / durationInSeconds;
     durations.push(durationInSeconds / 60);
@@ -106,7 +107,8 @@ function plotPaceDurationChart(cs, yIntercept) {
   const durations = [];
   const paces = [];
 
-  for (let i = 0; i <= 80; i++) {
+  // Start at 15 s: at 0 s, yIntercept / duration is infinite.
+  for (let i = 1; i <= 80; i++) {
     const durationInSeconds = i * 15; // Convert minutes to seconds
     const speed = cs + yIntercept / durationInSeconds;
     //   const pace = 1000 / (speed * 60); // Convert speed (m/s) to pace (min/km)
