@@ -15,6 +15,17 @@ export const legacyRedirects = {
   "/store/index.html": "https://www.revolutionise.com.au/bushturkeytc/shop",
   "/bush-turkey-classic-2024.html": "/events/bush-turkey-classic-2024/",
   "/bush-turkey-relay-2025.html": "/events/bush-turkey-relay-2025/",
+  "/btc21_22.html": "/events/bush-turkey-classic-2021/",
+  "/bush-turkey-classic-2022.html": "/events/bush-turkey-classic-2022/",
+  "/bush-turkey-classic-2023.html": "/events/bush-turkey-classic-2023/",
+  "/bush_turkey_relay_2022.html": "/events/bush-turkey-relay-2022/",
+  "/bush-turkey-relay-2023.html": "/events/bush-turkey-relay-2023/",
+  "/bush-turkey-relay-2024.html": "/events/bush-turkey-relay-2024/",
+  "/nudgee-gift-2024.html": "/events/nudgee-gift-2024/",
+  "/nudgee-gift-2025.html": "/events/nudgee-gift-2025/",
+  "/turkey-smash-2022.html": "/events/turkey-smash-2022/",
+  "/speed_week_2022.html": "/events/speed-week-2022/",
+  "/bt5000_22.html": "/events/bush-turkey-5000-2022/",
 };
 
 /**

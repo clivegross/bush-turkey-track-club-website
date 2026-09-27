@@ -34,5 +34,5 @@ Pages. You can also run it manually from the Actions tab. Pull requests run `npm
 
 ## Credits
 
-The previous version of the site (in `legacy/` until the migration is finished) used the Story template by
-[HTML5 UP](https://html5up.net) under the CCA 3.0 licence.
+The previous (pre-Astro) version of the site used the Story template by [HTML5 UP](https://html5up.net) under
+the CCA 3.0 licence. It is in the git history before the Astro conversion.

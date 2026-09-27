@@ -1,11 +1,12 @@
 ---
-import { STATUS_LABEL, type EventStatus } from "../lib/events";
+import { eventStatus, statusLabel, type EventEntry, type EventStatus } from "../lib/events";
 
 interface Props {
-  status: EventStatus;
+  event: EventEntry;
   class?: string;
 }
-const { status, class: className } = Astro.props;
+const { event, class: className } = Astro.props;
+const status = eventStatus(event);
 const styles: Record<EventStatus, string> = {
   upcoming: "bg-wattle text-navy-950",
   live: "bg-turkey text-white",
@@ -21,5 +22,5 @@ const styles: Record<EventStatus, string> = {
   ]}
 >
   {status === "live" && <span class="size-1.5 animate-pulse rounded-full bg-white" />}
-  {STATUS_LABEL[status]}
+  {statusLabel(event)}
 </span>

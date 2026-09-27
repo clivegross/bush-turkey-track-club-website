@@ -1,0 +1,19 @@
+---
+// Stand-in for events without a hero photo: the club logo on navy with the
+// singlet chevron.
+import { Image } from "astro:assets";
+import logo from "../assets/logo.png";
+import Chevron from "./Chevron.astro";
+
+interface Props {
+  label: string;
+  class?: string;
+}
+const { label, class: className } = Astro.props;
+---
+
+<div class:list={["relative flex flex-col items-center justify-center gap-3 overflow-hidden bg-navy-900 p-6 text-center", className]}>
+  <Image src={logo} alt="" width={160} class="size-24 rounded-full bg-white sm:size-28" />
+  <p class="font-display text-2xl tracking-wider text-white">{label}</p>
+  <Chevron class="absolute inset-x-0 bottom-3 opacity-90" />
+</div>

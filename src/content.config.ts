@@ -56,13 +56,18 @@ const events = defineCollection({
         date: z.coerce.date(),
         /** Last round of a multi-round series. */
         endDate: z.coerce.date().optional(),
+        /** Show only the month and year, when the exact day isn't known. */
+        monthOnly: z.boolean().default(false),
         /** Start time for single-day events, e.g. "5:00 PM". */
         time: z.string().optional(),
         location: z.object({ name: z.string(), mapUrl: z.url().optional() }).optional(),
         /** One or two sentences for event cards and search/social previews. */
         summary: z.string(),
-        hero: image(),
-        heroAlt: z.string(),
+        /** Optional: events without a photo get a club-branded card. */
+        hero: image().optional(),
+        heroAlt: z.string().optional(),
+        /** "contain" shows the whole image on cards (for logos/posters that crop badly). */
+        heroFit: z.enum(["cover", "contain"]).default("cover"),
         links: z.array(link).default([]),
         registerUrl: z.url().optional(),
         photosUrl: z.url().optional(),
@@ -89,7 +94,8 @@ const events = defineCollection({
       .refine((e) => !e.endDate || e.endDate >= e.date, {
         message: "endDate must be on or after date",
         path: ["endDate"],
-      }),
+      })
+      .refine((e) => !e.hero || e.heroAlt, { message: "heroAlt is required with hero", path: ["heroAlt"] }),
 });
 
 /** YAML list loader that derives an `id` for each row. */

@@ -51,6 +51,16 @@
   .prose-club blockquote {
     @apply rounded-r-lg border-l-4 border-wattle bg-wattle/10 px-5 py-3 text-sm font-normal text-navy-800 not-italic;
   }
+  /* Images in event body text (team photos, captains, posters). */
+  .prose-club img {
+    @apply inline-block max-h-[28rem] w-auto rounded-xl align-top;
+  }
+  .prose-club p:has(> img + img) {
+    @apply flex flex-wrap gap-3;
+  }
+  .prose-club p:has(> img + img) img {
+    @apply my-0 max-h-60;
+  }
   .prose-club blockquote p::before,
   .prose-club blockquote p::after {
     content: none;

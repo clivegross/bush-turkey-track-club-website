@@ -45,8 +45,17 @@ const fmt = (opts: Intl.DateTimeFormatOptions) =>
 const longDate = fmt({ weekday: "long", day: "numeric", month: "long", year: "numeric" });
 const dayMonth = fmt({ day: "numeric", month: "short" });
 const dayMonthYear = fmt({ day: "numeric", month: "short", year: "numeric" });
+const monthYear = fmt({ month: "long", year: "numeric" });
 
 export const formatLongDate = (d: Date) => longDate.format(d);
+
+/** The date line for an event card or header. */
+export function formatEventDate(event: EventEntry, long = false): string {
+  const { date, endDate, monthOnly } = event.data;
+  if (monthOnly) return monthYear.format(date);
+  if (endDate) return formatDateRange(date, endDate);
+  return long ? formatLongDate(date) : formatDateRange(date);
+}
 
 /** "21 Nov 2025" or "13 Dec 2025 – 31 Jan 2026" */
 export function formatDateRange(start: Date, end?: Date): string {
@@ -55,8 +64,12 @@ export function formatDateRange(start: Date, end?: Date): string {
   return `${(sameYear ? dayMonth : dayMonthYear).format(start)} – ${dayMonthYear.format(end)}`;
 }
 
-export const STATUS_LABEL: Record<EventStatus, string> = {
-  upcoming: "Upcoming",
-  live: "In progress",
-  completed: "Results",
-};
+/** Badge text: past events say what they offer (results, photos) rather than just "past". */
+export function statusLabel(event: EventEntry): string {
+  const status = eventStatus(event);
+  if (status === "upcoming") return "Upcoming";
+  if (status === "live") return "In progress";
+  if (event.data.results) return "Results";
+  if (event.data.photosUrl || event.data.gallery.length) return "Photos";
+  return "Past event";
+}

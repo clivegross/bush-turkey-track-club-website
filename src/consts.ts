@@ -33,7 +33,7 @@ export const SERIES = {
   "turkey-smash": { label: "Turkey Smash" },
   "bush-turkey-5000": { label: "Bush Turkey 5000m" },
   "speed-week": { label: "Speed Week" },
-  "club-outing": { label: "Club outing" },
+  "club-racing": { label: "Club racing" },
 } as const;
 
 export type SeriesKey = keyof typeof SERIES;
