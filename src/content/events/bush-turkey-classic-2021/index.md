@@ -38,7 +38,7 @@ rounds:
 results:
   source: data
   tables:
-    - { title: Men's series overall, file: results/series-men.csv }
+    - { title: Men's series overall, file: results/series-men.csv, note: "* Adjusted score for an athlete who missed a round, as published in the original 2021 results." }
     - { title: Women's series overall, file: results/series-women.csv }
     - { title: Round One – Men, file: results/round-1-men.csv, note: No women's race in Round One. }
     - { title: Round Two – Men, file: results/round-2-men.csv, note: No women's race in Round Two. }
