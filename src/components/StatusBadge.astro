@@ -8,9 +8,9 @@ interface Props {
 const { event, class: className } = Astro.props;
 const status = eventStatus(event);
 const styles: Record<EventStatus, string> = {
-  upcoming: "bg-wattle text-navy-950",
+  upcoming: "bg-wattle text-ink-950",
   live: "bg-turkey text-white",
-  completed: "bg-navy-900/85 text-white",
+  completed: "bg-ink-900/85 text-white",
 };
 ---
 

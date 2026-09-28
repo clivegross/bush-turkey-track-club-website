@@ -11,6 +11,7 @@ export const SITE = {
 export const LINKS = {
   instagram: "https://www.instagram.com/bush_turkey_track_club/",
   strava: "https://www.strava.com/clubs/996569",
+  facebook: "https://www.facebook.com/bushturkeytrackclub",
   store: "https://www.revolutionise.com.au/bushturkeytc/shop",
 };
 

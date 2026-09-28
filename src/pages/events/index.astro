@@ -14,7 +14,7 @@ const seriesInUse = [...new Set(past.map((e) => e.data.series))] as SeriesKey[];
   title="Events"
   description="Races hosted by the Bush Turkey Track Club: the Bush Turkey Classic, Bush Turkey Relay, Nudgee Gift and more, with results from every edition."
 >
-  <section class="bg-navy-900 py-14 text-white">
+  <section class="bg-ink-900 py-14 text-white">
     <div class="container-page">
       <p class="eyebrow text-wattle">Races &amp; results</p>
       <h1 class="text-6xl sm:text-7xl">Events</h1>
@@ -48,7 +48,7 @@ const seriesInUse = [...new Set(past.map((e) => e.data.series))] as SeriesKey[];
               type="button"
               aria-pressed="true"
               data-value=""
-              class="rounded-full px-3.5 py-1.5 text-sm font-semibold ring-1 ring-navy-200 aria-pressed:bg-navy-900 aria-pressed:text-white aria-pressed:ring-navy-900"
+              class="rounded-full px-3.5 py-1.5 text-sm font-semibold ring-1 ring-navy-200 aria-pressed:bg-ink-900 aria-pressed:text-white aria-pressed:ring-ink-900"
             >
               All
             </button>
@@ -57,7 +57,7 @@ const seriesInUse = [...new Set(past.map((e) => e.data.series))] as SeriesKey[];
                 type="button"
                 aria-pressed="false"
                 data-value={key}
-                class="rounded-full px-3.5 py-1.5 text-sm font-semibold ring-1 ring-navy-200 aria-pressed:bg-navy-900 aria-pressed:text-white aria-pressed:ring-navy-900"
+                class="rounded-full px-3.5 py-1.5 text-sm font-semibold ring-1 ring-navy-200 aria-pressed:bg-ink-900 aria-pressed:text-white aria-pressed:ring-ink-900"
               >
                 {SERIES[key].label}
               </button>

@@ -4,14 +4,18 @@ import Chevron from "./Chevron.astro";
 import Icon from "./Icon.astro";
 ---
 
-<footer class="mt-24 bg-navy-900 text-white">
+<footer class="mt-24 bg-ink-900 text-white">
   <Chevron class="-translate-y-px" />
   <div class="container-page grid gap-10 py-12 sm:grid-cols-[2fr_1fr_1fr]">
     <div>
       <p class="font-display text-4xl tracking-wider">Gobble, gobble!</p>
       <p class="mt-2 max-w-sm text-sm text-white/70">
-        A performance-focused amateur distance running club on Brisbane's Bramble Bay. DM us on Instagram to join us for
-        a run.
+        Bush Turkey Track Club, a performance-focused amateur distance running club on Brisbane's Bramble Bay. <a
+          href={LINKS.instagram}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="font-semibold text-white underline decoration-white/40 underline-offset-2 hover:decoration-white"
+        >DM us on Instagram</a> to join us for a run.
       </p>
       <div class="mt-5 flex gap-3">
         <a href={LINKS.instagram} target="_blank" rel="noopener noreferrer" class="rounded-full bg-white/10 p-2.5 hover:bg-white/20">
@@ -19,6 +23,9 @@ import Icon from "./Icon.astro";
         </a>
         <a href={LINKS.strava} target="_blank" rel="noopener noreferrer" class="rounded-full bg-white/10 p-2.5 hover:bg-white/20">
           <Icon name="strava" label="Strava" />
+        </a>
+        <a href={LINKS.facebook} target="_blank" rel="noopener noreferrer" class="rounded-full bg-white/10 p-2.5 hover:bg-white/20">
+          <Icon name="facebook" label="Facebook" />
         </a>
       </div>
     </div>

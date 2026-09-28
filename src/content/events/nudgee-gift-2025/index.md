@@ -18,3 +18,7 @@ gallery:
 The Nudgee Gift returns in 2025 with the flagship handicap mile event plus the kids race, presentations and other fun.
 
 The gift race is invitational and open to Bush Turkey Track Club members and select invited non-members only. If you aren't a club member but wish to race, [contact us](https://www.instagram.com/bush_turkey_track_club/) before you register.
+
+## Winner
+
+**Taz Savage** won the 2025 Nudgee Gift.

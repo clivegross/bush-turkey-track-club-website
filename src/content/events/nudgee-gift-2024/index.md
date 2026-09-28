@@ -16,3 +16,7 @@ The Nudgee Gift returns in 2024 with the flagship handicap mile event plus the k
 The gift race is invitational and open to Bush Turkey Track Club members and select invited non-members only. If you aren't a club member but wish to race, [contact us](https://www.instagram.com/bush_turkey_track_club/) before you register. All are welcome to spectate and celebrate after with a family friendly BBQ. The kids race and kids BBQ are free.
 
 Spectators are $5 to help cover track hire and catering, including the BBQ.
+
+## Winner
+
+**Rhys Turner** won the 2024 Nudgee Gift.

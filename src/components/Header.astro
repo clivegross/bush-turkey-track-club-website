@@ -8,10 +8,18 @@ const path = Astro.url.pathname;
 const isActive = (href: string) => href !== "/" && path.startsWith(href);
 ---
 
-<header class="sticky top-0 z-40 bg-navy-900 text-white shadow-lg shadow-navy-950/20">
+<header class="sticky top-0 z-40 bg-ink-900 text-white shadow-lg shadow-ink-950/20">
   <div class="container-page flex h-16 items-center justify-between gap-4">
     <a href="/" class="flex items-center gap-3">
-      <Image src={logo} alt="" width={44} height={44} class="size-11 rounded-full bg-white" loading="eager" />
+      <Image
+        src={logo}
+        alt=""
+        width={44}
+        height={44}
+        densities={[1, 2, 3]}
+        class="size-11 rounded-full bg-white"
+        loading="eager"
+      />
       <span class="font-display text-2xl leading-none tracking-wider sm:text-[1.7rem]">{SITE.name}</span>
     </a>
 

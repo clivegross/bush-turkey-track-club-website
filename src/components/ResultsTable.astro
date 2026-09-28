@@ -80,7 +80,7 @@ const slug = `${eventId}-${file}`.replace(/[^a-z0-9]+/gi, "-");
   </div>
   <div class="max-h-[70vh] overflow-auto">
     <table class="w-full text-left text-sm">
-      <thead class="sticky top-0 z-10 bg-navy-900 text-white">
+      <thead class="sticky top-0 z-10 bg-ink-900 text-white">
         <tr>
           {
             header.map((h, i) => (
@@ -106,7 +106,7 @@ const slug = `${eventId}-${file}`.replace(/[^a-z0-9]+/gi, "-");
                     <span
                       class:list={[
                         "inline-flex size-6 items-center justify-center rounded-full text-xs font-bold",
-                        ["bg-wattle text-navy-950", "bg-navy-200 text-navy-900", "bg-[#d69a5c] text-navy-950"][medal(row) - 1],
+                        ["bg-wattle text-ink-950", "bg-navy-200 text-ink-900", "bg-[#d69a5c] text-ink-950"][medal(row) - 1],
                       ]}
                     >
                       {cell}
