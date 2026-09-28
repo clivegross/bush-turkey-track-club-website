@@ -1,0 +1,189 @@
+---
+import { parseCsv } from "../lib/csv";
+
+interface Props {
+  /** Event folder name (the event's id). */
+  eventId: string;
+  /** CSV path relative to the event folder. */
+  file: string;
+  title: string;
+  note?: string;
+  /** Column names to offer as dropdown filters. */
+  filters?: string[];
+}
+
+const csvFiles = import.meta.glob<string>("/src/content/events/**/*.csv", {
+  query: "?raw",
+  import: "default",
+  eager: true,
+});
+
+const { eventId, file, title, note, filters = [] } = Astro.props;
+const path = `/src/content/events/${eventId}/${file.replace(/^\.\//, "")}`;
+const raw = csvFiles[path];
+if (raw === undefined) {
+  throw new Error(`Results file not found: ${path} (check results.tables in ${eventId}/index.md)`);
+}
+
+const [header = [], ...rows] = parseCsv(raw);
+const filterCols = filters.map((name) => {
+  const index = header.indexOf(name);
+  if (index === -1) throw new Error(`Filter column "${name}" not found in ${path}. Columns: ${header.join(", ")}`);
+  const values = [...new Set(rows.map((r) => r[index]).filter(Boolean))].sort();
+  return { name, index, values };
+});
+const nameCol = header.findIndex((h) => /name|team/i.test(h));
+const placeCol = header.findIndex((h) => /^(position|place|pos)$/i.test(h));
+const medal = (row: string[]) => {
+  const n = placeCol === -1 ? NaN : parseInt(row[placeCol], 10);
+  return n >= 1 && n <= 3 && /^\d+$/.test(row[placeCol].trim()) ? n : 0;
+};
+const slug = `${eventId}-${file}`.replace(/[^a-z0-9]+/gi, "-");
+---
+
+<section class="rounded-2xl bg-white ring-1 ring-navy-100" data-results-table>
+  <div class="flex flex-col gap-3 border-b border-navy-100 p-4 sm:flex-row sm:items-end sm:justify-between sm:p-5">
+    <div>
+      <h3 class="text-3xl leading-none">{title}</h3>
+      {note && <p class="mt-1 text-sm text-navy-600">{note}</p>}
+      <p class="mt-1 text-xs text-navy-600" aria-live="polite"><span data-count>{rows.length}</span> results</p>
+    </div>
+    <div class="flex flex-wrap gap-2">
+      <label class="sr-only" for={`${slug}-search`}>Search {title}</label>
+      <input
+        id={`${slug}-search`}
+        type="search"
+        placeholder="Search name…"
+        class="w-full rounded-full border-0 bg-navy-50 px-4 py-2 text-sm ring-1 ring-navy-100 ring-inset placeholder:text-navy-300 focus:ring-2 focus:ring-turkey sm:w-48"
+        data-search
+      />
+      {
+        filterCols.map((f) => (
+          <>
+            <label class="sr-only" for={`${slug}-${f.index}`}>
+              Filter by {f.name}
+            </label>
+            <select
+              id={`${slug}-${f.index}`}
+              class="rounded-full border-0 bg-navy-50 py-2 pr-8 pl-4 text-sm ring-1 ring-navy-100 ring-inset focus:ring-2 focus:ring-turkey"
+              data-filter={f.index}
+            >
+              <option value="">{f.name}: all</option>
+              {f.values.map((v) => (
+                <option value={v}>{v}</option>
+              ))}
+            </select>
+          </>
+        ))
+      }
+    </div>
+  </div>
+  <div class="max-h-[70vh] overflow-auto">
+    <table class="w-full text-left text-sm">
+      <thead class="sticky top-0 z-10 bg-navy-900 text-white">
+        <tr>
+          {
+            header.map((h, i) => (
+              <th scope="col" class="p-0 font-semibold whitespace-nowrap" aria-sort="none">
+                <button type="button" class="flex w-full items-center gap-1 px-3 py-2.5 text-left hover:text-wattle" data-sort={i}>
+                  {h}
+                  <span class="text-[0.6rem] opacity-50" aria-hidden="true" data-arrow>
+                    ↕
+                  </span>
+                </button>
+              </th>
+            ))
+          }
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-navy-50">
+        {
+          rows.map((row) => (
+            <tr class="odd:bg-white even:bg-navy-50/50 hover:bg-wattle/10">
+              {row.map((cell, i) => (
+                <td class:list={["px-3 py-2 whitespace-nowrap", i === nameCol && "font-semibold"]}>
+                  {i === placeCol && medal(row) ? (
+                    <span
+                      class:list={[
+                        "inline-flex size-6 items-center justify-center rounded-full text-xs font-bold",
+                        ["bg-wattle text-navy-950", "bg-navy-200 text-navy-900", "bg-[#d69a5c] text-navy-950"][medal(row) - 1],
+                      ]}
+                    >
+                      {cell}
+                    </span>
+                  ) : (
+                    cell
+                  )}
+                </td>
+              ))}
+            </tr>
+          ))
+        }
+      </tbody>
+    </table>
+    <p class="hidden p-6 text-center text-sm text-navy-600" data-empty>No matching results.</p>
+  </div>
+</section>
+
+<script>
+  import { timeToSeconds } from "../lib/time";
+
+  /** Sort key: numbers first (leading number, so "28 (DNS)" sorts as 28), then times, then text. */
+  function sortKey(text: string): [number, number | string] {
+    const t = text.trim();
+    const seconds = timeToSeconds(t);
+    if (!Number.isNaN(seconds)) return [0, seconds];
+    const n = parseFloat(t);
+    if (/^-?\d/.test(t) && !Number.isNaN(n)) return [0, n];
+    if (t === "" || t === "-") return [2, ""];
+    return [1, t.toLowerCase()];
+  }
+
+  for (const root of document.querySelectorAll<HTMLElement>("[data-results-table]")) {
+    const tbody = root.querySelector("tbody")!;
+    const rows = [...tbody.rows];
+    const search = root.querySelector<HTMLInputElement>("[data-search]")!;
+    const selects = [...root.querySelectorAll<HTMLSelectElement>("[data-filter]")];
+    const count = root.querySelector("[data-count]")!;
+    const empty = root.querySelector("[data-empty]")!;
+    const nameCol = [...root.querySelectorAll("thead th")].findIndex((th) => /name|team/i.test(th.textContent ?? ""));
+
+    function applyFilters() {
+      const q = search.value.trim().toLowerCase();
+      let shown = 0;
+      for (const row of rows) {
+        const cells = row.cells;
+        const text = nameCol >= 0 ? cells[nameCol].textContent! : row.textContent!;
+        const ok =
+          (!q || text.toLowerCase().includes(q)) &&
+          selects.every((s) => !s.value || cells[Number(s.dataset.filter)].textContent!.trim() === s.value);
+        row.hidden = !ok;
+        if (ok) shown++;
+      }
+      count.textContent = String(shown);
+      empty.classList.toggle("hidden", shown > 0);
+    }
+    search.addEventListener("input", applyFilters);
+    selects.forEach((s) => s.addEventListener("change", applyFilters));
+
+    let sorted = { col: -1, dir: 1 };
+    for (const button of root.querySelectorAll<HTMLButtonElement>("[data-sort]")) {
+      button.addEventListener("click", () => {
+        const col = Number(button.dataset.sort);
+        const dir = sorted.col === col ? -sorted.dir : 1;
+        sorted = { col, dir };
+        const keyed = rows.map((row) => ({ row, key: sortKey(row.cells[col]?.textContent ?? "") }));
+        keyed.sort((a, b) => {
+          if (a.key[0] !== b.key[0]) return a.key[0] - b.key[0]; // blanks always last
+          return (a.key[1] < b.key[1] ? -1 : a.key[1] > b.key[1] ? 1 : 0) * dir;
+        });
+        tbody.append(...keyed.map((k) => k.row));
+        for (const th of root.querySelectorAll("thead th")) {
+          const active = th.contains(button);
+          th.setAttribute("aria-sort", active ? (dir === 1 ? "ascending" : "descending") : "none");
+          th.querySelector("[data-arrow]")!.textContent = active ? (dir === 1 ? "▲" : "▼") : "↕";
+        }
+      });
+    }
+  }
+</script>

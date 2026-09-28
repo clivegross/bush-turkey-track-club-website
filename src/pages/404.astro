@@ -1,0 +1,16 @@
+---
+import Button from "../components/Button.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Page not found">
+  <section class="container-page py-24 text-center">
+    <p class="font-display text-3xl tracking-widest text-turkey">Gobble?</p>
+    <h1 class="text-7xl">Page not found</h1>
+    <p class="mt-3 text-navy-700">That page has run off. Try the events list instead.</p>
+    <div class="mt-8 flex justify-center gap-3">
+      <Button href="/" variant="primary">Home</Button>
+      <Button href="/events/">Events</Button>
+    </div>
+  </section>
+</BaseLayout>

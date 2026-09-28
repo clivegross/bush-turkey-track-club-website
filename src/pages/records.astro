@@ -1,0 +1,110 @@
+---
+import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+import claire from "../assets/records-claire-obrien-2024.jpeg";
+import goldCoast from "../assets/records-gold-coast-2023.jpg";
+import qa3000 from "../assets/records-qa-3000m-2023.jpg";
+import sandgate from "../assets/records-sandgate-parkrun-2025.jpg";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { timeToSeconds } from "../lib/time";
+
+const DISTANCES = [
+  { key: "marathon", label: "Marathon" },
+  { key: "half-marathon", label: "Half Marathon", image: goldCoast, alt: "Gold Coast Running Festival 2023 half marathon start" },
+  { key: "10km", label: "10km" },
+  { key: "5km", label: "5km", image: sandgate, alt: "Club members at Sandgate parkrun, April 2025" },
+  { key: "3000m", label: "3000m Track", image: qa3000, alt: "Queensland Athletics 3000m Championship 2023" },
+] as const;
+const SEXES = [
+  { key: "men", label: "Men" },
+  { key: "women", label: "Women" },
+] as const;
+
+const performances = (await getCollection("performances")).map((p) => p.data);
+
+/** Each athlete's best time, fastest three. */
+function top3(distance: string, sex: string) {
+  const best = new Map<string, (typeof performances)[number]>();
+  for (const p of performances) {
+    if (p.distance !== distance || p.sex !== sex) continue;
+    const prev = best.get(p.name);
+    if (!prev || timeToSeconds(p.time) < timeToSeconds(prev.time)) best.set(p.name, p);
+  }
+  return [...best.values()].sort((a, b) => timeToSeconds(a.time) - timeToSeconds(b.time)).slice(0, 3);
+}
+
+const champions = (await getCollection("champions")).map((c) => c.data).sort((a, b) => b.year - a.year);
+const medal = ["bg-wattle text-navy-950", "bg-navy-200 text-navy-900", "bg-[#d69a5c] text-navy-950"];
+---
+
+<BaseLayout title="Club Records" description="Bush Turkey Track Club records for the marathon, half marathon, 10km, 5km and 3000m, plus Bush Turkey Classic champions.">
+  <section class="bg-navy-900 text-white">
+    <div class="container-page grid gap-8 py-12 md:grid-cols-2 md:items-center">
+      <div>
+        <p class="eyebrow text-wattle">Fastest turkeys</p>
+        <h1 class="text-6xl sm:text-7xl">Club records</h1>
+        <p class="mt-3 max-w-md text-white/75">The top three club members over each distance, men and women.</p>
+      </div>
+      <Image src={claire} alt="Claire O'Brien racing the Bush Turkey Classic" widths={[480, 800]} sizes="(min-width: 768px) 50vw, 100vw" class="rounded-2xl" />
+    </div>
+  </section>
+
+  <nav class="container-page flex flex-wrap gap-2 pt-8" aria-label="Distances">
+    {
+      DISTANCES.map((d) => (
+        <a href={`#${d.key}`} class="rounded-full px-3.5 py-1.5 text-sm font-semibold ring-1 ring-navy-200 hover:bg-navy-50">
+          {d.label}
+        </a>
+      ))
+    }
+    <a href="#classic" class="rounded-full px-3.5 py-1.5 text-sm font-semibold ring-1 ring-navy-200 hover:bg-navy-50">Classic champions</a>
+  </nav>
+
+  {
+    DISTANCES.map((d) => (
+      <section id={d.key} class="container-page scroll-mt-20 pt-12">
+        <h2 class="text-5xl">{d.label}</h2>
+        {"image" in d && <Image src={d.image} alt={d.alt} widths={[640, 1200]} sizes="(min-width: 1152px) 1152px, 100vw" class="mt-4 aspect-[21/9] w-full rounded-2xl object-cover" />}
+        <div class="mt-5 grid gap-5 sm:grid-cols-2">
+          {SEXES.map((s) => (
+            <div class="rounded-2xl bg-white p-5 ring-1 ring-navy-100">
+              <h3 class="text-2xl text-navy-600">{s.label}</h3>
+              <ol class="mt-3 divide-y divide-navy-50">
+                {top3(d.key, s.key).map((p, i) => (
+                  <li class="flex items-center gap-3 py-2.5">
+                    <span class:list={["inline-flex size-7 shrink-0 items-center justify-center rounded-full text-sm font-bold", medal[i]]}>{i + 1}</span>
+                    <span class="flex-1 font-semibold">{p.name}</span>
+                    <span class="font-mono text-lg tabular-nums">{p.time}</span>
+                    <span class="w-12 text-right text-sm text-navy-600">{p.year}</span>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          ))}
+        </div>
+      </section>
+    ))
+  }
+
+  <section id="classic" class="container-page scroll-mt-20 pt-12">
+    <h2 class="text-5xl">Bush Turkey Classic champions</h2>
+    <div class="mt-5 overflow-hidden rounded-2xl ring-1 ring-navy-100">
+      <table class="w-full text-left">
+        <thead class="bg-navy-900 text-sm text-white">
+          <tr><th class="px-4 py-2.5">Year</th><th class="px-4 py-2.5">Men</th><th class="px-4 py-2.5">Women</th></tr>
+        </thead>
+        <tbody class="divide-y divide-navy-50">
+          {
+            champions.map((c) => (
+              <tr class="even:bg-navy-50/50">
+                <td class="px-4 py-2.5 font-semibold">{c.year}</td>
+                <td class="px-4 py-2.5">{c.men}</td>
+                <td class="px-4 py-2.5">{c.women}</td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+  </section>
+</BaseLayout>

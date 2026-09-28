@@ -1,0 +1,86 @@
+---
+import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+import beerburrum from "../assets/about-beerburrum-2023.jpg";
+import melbourne from "../assets/about-melbourne-marathon-2022.jpg";
+import squadrace from "../assets/about-squadrace-2023.jpg";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const members = (await getCollection("members"))
+  .map((m) => m.data)
+  .sort((a, b) => a.last.localeCompare(b.last, "en", { sensitivity: "base" }) || a.first.localeCompare(b.first));
+
+const values = [
+  ["Performance", "We fearlessly challenge our limits, we train with purpose."],
+  ["Mateship", "We are stronger together, we value our teammates, families and community."],
+  ["Celebration", "We have fun, our journey is joyful, we celebrate our teammates' accomplishments, we work hard and play hard."],
+  ["Integrity", "We strive to the highest standards in our behaviour. We hold ourselves accountable and adhere to the values of our community."],
+];
+---
+
+<BaseLayout title="About Us" description="The purpose, values and members of the Bush Turkey Track Club, a performance-focused amateur distance running club in Brisbane.">
+  <section class="bg-navy-900 text-white">
+    <div class="container-page py-12">
+      <p class="eyebrow text-wattle">About us</p>
+      <h1 class="text-6xl sm:text-7xl">About the club</h1>
+    </div>
+  </section>
+  <Image src={beerburrum} alt="Club members on a trail run in Beerburrum East State Forest, September 2023" widths={[640, 1200, 1920]} sizes="100vw" class="aspect-[21/9] w-full object-cover" />
+
+  <section class="container-page grid gap-12 py-14 md:grid-cols-2">
+    <div>
+      <h2 class="text-4xl">Our purpose</h2>
+      <p class="mt-3 text-lg text-navy-800">
+        Our purpose is to empower our members to achieve their distance running performance goals, while fostering mateship
+        and community.
+      </p>
+      <h2 class="mt-10 text-4xl">Our vision</h2>
+      <p class="mt-3 text-lg text-navy-800">To be the premier performance amateur distance running club in South East Queensland.</p>
+    </div>
+    <div>
+      <h2 class="text-4xl">Our values</h2>
+      <dl class="mt-4 space-y-4">
+        {
+          values.map(([name, text]) => (
+            <div class="rounded-xl border-l-4 border-turkey bg-navy-50 p-4">
+              <dt class="font-display text-2xl tracking-wide">{name}</dt>
+              <dd class="text-navy-800">{text}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </div>
+  </section>
+
+  <Image src={squadrace} alt="Britt Jones and Aidan Dineen at the On Running Squadrace relay, 2023" widths={[640, 1200]} sizes="(min-width: 1152px) 1152px, 100vw" class="container-page aspect-[21/9] rounded-2xl object-cover" />
+
+  <section class="container-page pt-14" aria-labelledby="team">
+    <div class="grid gap-8 md:grid-cols-[1fr_2fr]">
+      <div>
+        <h2 id="team" class="text-5xl">Meet the team</h2>
+        <p class="mt-2 text-navy-700">{members.length} members and counting.</p>
+        <Image src={melbourne} alt="Club members at the Melbourne Marathon 2022" widths={[400, 800]} sizes="(min-width: 768px) 33vw, 100vw" class="mt-6 rounded-2xl" />
+      </div>
+      <ul class="grid grid-cols-2 gap-2 self-start sm:grid-cols-3">
+        {
+          members.map((m) => (
+            <li class="rounded-lg bg-navy-50 px-3 py-2 text-sm font-medium">
+              {m.first} {m.last}
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="container-page pt-14">
+    <h2 class="text-4xl">Latest on Strava</h2>
+    <iframe
+      title="Bush Turkey Track Club recent Strava activities"
+      loading="lazy"
+      height="454"
+      scrolling="no"
+      src="https://www.strava.com/clubs/996569/latest-rides/243a91ff335a3d957412cec8e1cc46053ed6f633?show_rides=true"
+      class="mt-4 w-full border-0"></iframe>
+  </section>
+</BaseLayout>

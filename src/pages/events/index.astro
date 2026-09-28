@@ -1,0 +1,84 @@
+---
+import EventCard from "../../components/EventCard.astro";
+import { SERIES, type SeriesKey } from "../../consts";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { currentEvents, getEvents } from "../../lib/events";
+
+const events = await getEvents();
+const current = currentEvents(events);
+const past = events.filter((e) => !current.includes(e));
+const seriesInUse = [...new Set(past.map((e) => e.data.series))] as SeriesKey[];
+---
+
+<BaseLayout
+  title="Events"
+  description="Races hosted by the Bush Turkey Track Club: the Bush Turkey Classic, Bush Turkey Relay, Nudgee Gift and more, with results from every edition."
+>
+  <section class="bg-navy-900 py-14 text-white">
+    <div class="container-page">
+      <p class="eyebrow text-wattle">Races &amp; results</p>
+      <h1 class="text-6xl sm:text-7xl">Events</h1>
+      <p class="mt-3 max-w-2xl text-lg text-white/75">
+        Entertaining and competitive races throughout the year, from the summer Bush Turkey Classic series to the Deagon
+        Speedway relay.
+      </p>
+    </div>
+  </section>
+
+  {
+    current.length > 0 && (
+      <section class="container-page pt-12">
+        <h2 class="text-4xl">Upcoming</h2>
+        <div class="mt-6 grid gap-6">
+          {current.map((event) => (
+            <EventCard event={event} featured />
+          ))}
+        </div>
+      </section>
+    )
+  }
+
+  <section class="container-page pt-12">
+    <div class="flex flex-wrap items-end justify-between gap-4">
+      <h2 class="text-4xl">Previous events</h2>
+      {
+        seriesInUse.length > 1 && (
+          <div class="flex flex-wrap gap-2" role="group" aria-label="Filter by series" data-series-filter>
+            <button
+              type="button"
+              aria-pressed="true"
+              data-value=""
+              class="rounded-full px-3.5 py-1.5 text-sm font-semibold ring-1 ring-navy-200 aria-pressed:bg-navy-900 aria-pressed:text-white aria-pressed:ring-navy-900"
+            >
+              All
+            </button>
+            {seriesInUse.map((key) => (
+              <button
+                type="button"
+                aria-pressed="false"
+                data-value={key}
+                class="rounded-full px-3.5 py-1.5 text-sm font-semibold ring-1 ring-navy-200 aria-pressed:bg-navy-900 aria-pressed:text-white aria-pressed:ring-navy-900"
+              >
+                {SERIES[key].label}
+              </button>
+            ))}
+          </div>
+        )
+      }
+    </div>
+    <div class="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3" data-series-grid>
+      {past.map((event) => <EventCard event={event} />)}
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  const group = document.querySelector("[data-series-filter]");
+  const cards = document.querySelectorAll<HTMLElement>("[data-series-grid] > [data-series]");
+  group?.addEventListener("click", (e) => {
+    const button = (e.target as HTMLElement).closest<HTMLButtonElement>("button[data-value]");
+    if (!button) return;
+    for (const b of group.querySelectorAll("button")) b.setAttribute("aria-pressed", String(b === button));
+    for (const card of cards) card.hidden = !!button.dataset.value && card.dataset.series !== button.dataset.value;
+  });
+</script>

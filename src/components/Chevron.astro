@@ -1,0 +1,17 @@
+---
+// The red-and-yellow chevron from the club singlet, used as a divider.
+interface Props {
+  class?: string;
+}
+const { class: className = "" } = Astro.props;
+---
+
+<svg
+  viewBox="0 0 1200 60"
+  preserveAspectRatio="none"
+  aria-hidden="true"
+  class:list={["block h-6 w-full sm:h-10", className]}
+>
+  <polyline points="0,4 600,40 1200,4" fill="none" stroke="var(--color-turkey)" stroke-width="10"></polyline>
+  <polyline points="0,20 600,56 1200,20" fill="none" stroke="var(--color-wattle)" stroke-width="10"></polyline>
+</svg>

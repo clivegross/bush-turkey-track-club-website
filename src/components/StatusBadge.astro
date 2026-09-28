@@ -1,0 +1,26 @@
+---
+import { eventStatus, statusLabel, type EventEntry, type EventStatus } from "../lib/events";
+
+interface Props {
+  event: EventEntry;
+  class?: string;
+}
+const { event, class: className } = Astro.props;
+const status = eventStatus(event);
+const styles: Record<EventStatus, string> = {
+  upcoming: "bg-wattle text-navy-950",
+  live: "bg-turkey text-white",
+  completed: "bg-navy-900/85 text-white",
+};
+---
+
+<span
+  class:list={[
+    "inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-bold tracking-wide uppercase",
+    styles[status],
+    className,
+  ]}
+>
+  {status === "live" && <span class="size-1.5 animate-pulse rounded-full bg-white" />}
+  {statusLabel(event)}
+</span>
