@@ -111,7 +111,9 @@ const medal = ["bg-wattle text-ink-950", "bg-navy-200 text-ink-900", "bg-[#d69a5
           {
             champions.map((c) => (
               <tr class="even:bg-navy-50/50">
-                <td class="px-4 py-2.5 font-semibold">{c.year}</td>
+                <td class="px-4 py-2.5 font-semibold">
+                  <a href={`/events/bush-turkey-classic-${c.year}/`} class="text-turkey underline decoration-2 underline-offset-2 hover:text-turkey-dark">{c.year}</a>
+                </td>
                 <td class="px-4 py-2.5">{c.men}</td>
                 <td class="px-4 py-2.5">{c.women}</td>
               </tr>
@@ -133,7 +135,9 @@ const medal = ["bg-wattle text-ink-950", "bg-navy-200 text-ink-900", "bg-[#d69a5
           {
             nudgeeGiftWinners.map((entry) => (
               <tr class="even:bg-navy-50/50">
-                <td class="px-4 py-2.5 font-semibold">{entry.year}</td>
+                <td class="px-4 py-2.5 font-semibold">
+                  <a href={`/events/nudgee-gift-${entry.year}/`} class="text-turkey underline decoration-2 underline-offset-2 hover:text-turkey-dark">{entry.year}</a>
+                </td>
                 <td class="px-4 py-2.5">{entry.winner}</td>
               </tr>
             ))
@@ -154,7 +158,9 @@ const medal = ["bg-wattle text-ink-950", "bg-navy-200 text-ink-900", "bg-[#d69a5
           {
             relayWinners.map((entry) => (
               <tr class="even:bg-navy-50/50">
-                <td class="px-4 py-2.5 font-semibold">{entry.year}</td>
+                <td class="px-4 py-2.5 font-semibold">
+                  <a href={`/events/bush-turkey-relay-${entry.year}/`} class="text-turkey underline decoration-2 underline-offset-2 hover:text-turkey-dark">{entry.year}</a>
+                </td>
                 <td class="px-4 py-2.5">{entry.team}</td>
                 <td class="px-4 py-2.5">{entry.captain}</td>
               </tr>

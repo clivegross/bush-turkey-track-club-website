@@ -56,10 +56,10 @@
     @apply inline-block max-h-[28rem] w-auto rounded-xl align-top;
   }
   .prose-club p:has(> img + img) {
-    @apply flex flex-wrap gap-3;
+    @apply flex flex-wrap items-start gap-3;
   }
   .prose-club p:has(> img + img) img {
-    @apply my-0 max-h-60;
+    @apply my-0 size-60 object-cover;
   }
   .prose-club blockquote p::before,
   .prose-club blockquote p::after {
