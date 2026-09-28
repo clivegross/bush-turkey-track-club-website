@@ -40,10 +40,16 @@ const nudgeeGiftWinners = [
   { year: 2025, winner: "Taz Savage" },
   { year: 2026, winner: "Daniel Prosser" },
 ] as const;
+const relayWinners = [
+  { year: 2022, team: "Yellow Team", captain: "Scott Perry" },
+  { year: 2023, team: "Red Team", captain: "James Laird" },
+  { year: 2024, team: "White Team", captain: "Ewan McFadzen" },
+  { year: 2025, team: "White Team", captain: "Ewan McFadzen" },
+] as const;
 const medal = ["bg-wattle text-ink-950", "bg-navy-200 text-ink-900", "bg-[#d69a5c] text-ink-950"];
 ---
 
-<BaseLayout title="Club Records" description="Bush Turkey Track Club records for the marathon, half marathon, 10km, 5km and 3000m, plus Bush Turkey Classic champions and Nudgee Gift winners.">
+<BaseLayout title="Club Records" description="Bush Turkey Track Club records for the marathon, half marathon, 10km, 5km and 3000m, plus Bush Turkey Classic, Nudgee Gift and Bush Turkey Relay winners.">
   <section class="bg-ink-900 text-white">
     <div class="container-page grid gap-8 py-12 md:grid-cols-2 md:items-center">
       <div>
@@ -65,6 +71,7 @@ const medal = ["bg-wattle text-ink-950", "bg-navy-200 text-ink-900", "bg-[#d69a5
     }
     <a href="#classic" class="rounded-full px-3.5 py-1.5 text-sm font-semibold ring-1 ring-navy-200 hover:bg-navy-50">Classic champions</a>
     <a href="#nudgee-gift" class="rounded-full px-3.5 py-1.5 text-sm font-semibold ring-1 ring-navy-200 hover:bg-navy-50">Nudgee Gift</a>
+    <a href="#relay" class="rounded-full px-3.5 py-1.5 text-sm font-semibold ring-1 ring-navy-200 hover:bg-navy-50">Bush Turkey Relay</a>
   </nav>
 
   {
@@ -115,7 +122,7 @@ const medal = ["bg-wattle text-ink-950", "bg-navy-200 text-ink-900", "bg-[#d69a5
     </div>
   </section>
 
-  <section id="nudgee-gift" class="container-page scroll-mt-20 py-12">
+  <section id="nudgee-gift" class="container-page scroll-mt-20 pt-12">
     <h2 class="text-5xl">Nudgee Gift</h2>
     <div class="mt-5 overflow-hidden rounded-2xl ring-1 ring-navy-100">
       <table class="w-full text-left">
@@ -128,6 +135,28 @@ const medal = ["bg-wattle text-ink-950", "bg-navy-200 text-ink-900", "bg-[#d69a5
               <tr class="even:bg-navy-50/50">
                 <td class="px-4 py-2.5 font-semibold">{entry.year}</td>
                 <td class="px-4 py-2.5">{entry.winner}</td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="relay" class="container-page scroll-mt-20 py-12">
+    <h2 class="text-5xl">Bush Turkey Relay</h2>
+    <div class="mt-5 overflow-hidden rounded-2xl ring-1 ring-navy-100">
+      <table class="w-full text-left">
+        <thead class="bg-ink-900 text-sm text-white">
+          <tr><th class="px-4 py-2.5">Year</th><th class="px-4 py-2.5">Winning team</th><th class="px-4 py-2.5">Captain</th></tr>
+        </thead>
+        <tbody class="divide-y divide-navy-50">
+          {
+            relayWinners.map((entry) => (
+              <tr class="even:bg-navy-50/50">
+                <td class="px-4 py-2.5 font-semibold">{entry.year}</td>
+                <td class="px-4 py-2.5">{entry.team}</td>
+                <td class="px-4 py-2.5">{entry.captain}</td>
               </tr>
             ))
           }
