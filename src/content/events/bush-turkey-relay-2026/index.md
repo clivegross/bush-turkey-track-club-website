@@ -8,7 +8,7 @@ location:
   mapUrl: "https://goo.gl/maps/38H76deadJ7kmcFu7"
 summary: Teams take on the 1km out-and-back on the iconic Deagon Speedway, followed by a family friendly BBQ dinner. Teams and schedule to be announced soon.
 hero: ./hero.jpg
-heroAlt: Bush Turkey Relay poster with photos of club relay teams
+heroAlt: Club runners pass the baton during a relay changeover on the Deagon Speedway track
 registerUrl: "https://www.revolutionise.com.au/bushturkeytc/events/list"
 ---
 
