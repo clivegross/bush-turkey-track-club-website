@@ -14,9 +14,9 @@ registerUrl: "https://www.revolutionise.com.au/bushturkeytc/events/list"
 
 The Bush Turkey Relay returns for its fifth year as the most anticipated team event of summer 2026.
 
-Teams of athletes each take on the 1km out and back course on the iconic Deagon Speedway, followed by a family friendly BBQ dinner and drinks for members, family and friends only.
+Teams of athletes each take on the 1km out and back course on the iconic Deagon Speedway, followed by a family friendly BBQ dinner and drinks for members, family and friends only. $10 per relay participant, spectators and kids are free.
 
-The relay race is open to Bush Turkey Track Club members only, but family and friends are all welcome to spectate. Members must [register to race](https://www.revolutionise.com.au/bushturkeytc/events/list). Spectators please also register all adults and kids to help us plan catering. All welcome.
+The relay race is open to Bush Turkey Track Club members only, but family and friends are all welcome to spectate. Members must [register to race](https://www.revolutionise.com.au/bushturkeytc/events/list). Spectators please also register all adults and kids to help us plan catering for the BBQ after the race. All welcome.
 
 ## Teams and schedule
 
