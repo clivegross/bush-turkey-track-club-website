@@ -34,6 +34,7 @@ export const SERIES = {
   "turkey-smash": { label: "Turkey Smash" },
   "bush-turkey-5000": { label: "Bush Turkey 5000m" },
   "speed-week": { label: "Speed Week" },
+  "club-time-trial": { label: "Club Time Trial" },
   "club-racing": { label: "Club racing" },
 } as const;
 
