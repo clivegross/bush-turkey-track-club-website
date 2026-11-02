@@ -1,6 +1,6 @@
 ---
 title: Club 3000m Time Trial October 2026
-series: club-time-trial
+series: club-3000m-time-trial
 date: 2026-10-27
 summary: Club members lined up for the October 3000m time trial on the track.
 hero: ./hero.jpg

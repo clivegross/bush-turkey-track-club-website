@@ -45,3 +45,5 @@
 - { name: Cecylia Kubicki Garcia, distance: 3000m, sex: women, time: "10:12.29", year: 2025 }
 - { name: Charli Weinrauch, distance: 3000m, sex: women, time: "10:51.76", year: 2023 }
 - { name: Britt Chambers, distance: 3000m, sex: women, time: "11:00.40", year: 2023 }
+- { name: Clive Gross, distance: 3000m, sex: men, time: "8:53", year: 2026 }
+- { name: Stephen Butcher, distance: 3000m, sex: men, time: "9:13", year: 2026 }
