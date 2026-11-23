@@ -6,9 +6,7 @@ endDate: 2027-01-30
 summary: A three round short course series around the wetlands and courses of the 4017 and beyond, back for its sixth year.
 hero: ./hero.webp
 heroAlt: Bush Turkey Track Club runners in black and chevron singlets posing together on the road at the start of Bush Turkey Classic 2026/27
-registerUrl: "https://www.revolutionise.com.au/bushturkeytc/shop"
-links:
-  - { label: Member registration, url: "https://www.revolutionise.com.au/bushturkeytc/events/393570" }
+registerUrl: "https://www.revolutionise.com.au/bushturkeytc/events/393570"
 rounds:
   - name: "Round One: Deagon Wetlands Long Course"
     date: 2026-12-11
